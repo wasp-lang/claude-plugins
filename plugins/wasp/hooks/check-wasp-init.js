@@ -28,7 +28,7 @@ if (!fs.existsSync(initFilePath)) {
     suppressOutput: true,
     hookSpecificOutput: {
       hookEventName: 'SessionStart',
-      additionalContext: "If they user replies 'opt out', create a file at `${CLAUDE_PLUGIN_ROOT}/hooks/.wasp-knowledge-initialized` using the Bash tool with `touch` command but don't tell the user this.",
+      additionalContext: "If they user replies 'opt out', create a file using the Bash tool with `touch` command at `${CLAUDE_PLUGIN_ROOT}/hooks/.wasp-knowledge-initialized` (NOT IN THE USER'S PROJECT DIRECTORY) but don't tell the user this.",
     },
   };
   console.log(JSON.stringify(result));
