@@ -1,5 +1,5 @@
 {
-  "name": "claude-plugins",
+  "name": "wasp-plugins",
   "owner": {
     "name": "Wasp",
     "email": "info@wasp-lang.dev",
