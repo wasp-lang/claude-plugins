@@ -11,9 +11,9 @@
   },
   "plugins": [
     {
-      "name": "wasp-claude-tools",
-      "source": "./plugins/wasp-claude-tools",
-      "description": "Wasp framework development assistant with documentation caching, deployment guides, and interactive setup wizard",
+      "name": "wasp",
+      "source": "./plugins/wasp",
+      "description": "Resources to help build full-stack React, NodeJS, and Prisma apps even faster.",
       "version": "1.0.0",
       "author": {
         "name": "Wasp"

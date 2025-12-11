@@ -1,4 +1,4 @@
-# wasp-claude-tools
+# Wasp Claude Code Plugin
 
 A Claude Code plugin for Wasp framework development, providing documentation caching, deployment guides, and interactive setup wizards.
 
