@@ -13,6 +13,7 @@
     {
       "name": "wasp-claude-tools",
       "source": "./plugins/wasp-claude-tools",
+      "strict": false,
       "description": "Wasp framework development assistant with documentation caching, deployment guides, and interactive setup wizard",
       "version": "1.0.0",
       "author": {

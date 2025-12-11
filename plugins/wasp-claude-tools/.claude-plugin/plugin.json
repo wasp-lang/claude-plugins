@@ -1,4 +1,0 @@
-{
-  "name": "wasp-claude-tools",
-  "hooks": "./hooks/hooks.json"
-}
