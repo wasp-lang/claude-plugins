@@ -1,0 +1,16 @@
+{
+  "name": "wasp-claude-tools",
+  "source": "./plugins/wasp-claude-tools",
+  "description": "Wasp framework development assistant with documentation caching, deployment guides, and interactive setup wizard",
+  "version": "1.0.0",
+  "author": {
+    "name": "Wasp",
+    "email": "info@wasp-lang.dev",
+    "url": "https://wasp.sh"
+  },
+  "repository": "https://github.com/wasp-lang/claude-plugins",
+  "license": "MIT",
+  "keywords": ["wasp", "full-stack", "react", "node", "deployment", "authentication"],
+  "category": "frameworks",
+  "tags": ["wasp", "full-stack", "web-development"]
+}
