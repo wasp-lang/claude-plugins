@@ -2,6 +2,8 @@
 description: Show available Wasp plugin features and how to use them
 ---
 
+Present the user with the following information below:
+
 # Wasp Claude Tools Plugin
 
 ## Skills
