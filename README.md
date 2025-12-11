@@ -13,7 +13,7 @@ Official [Claude Code](https://claude.ai/code) plugins for the [Wasp](https://wa
 ### Install a plugin
 
 ```bash
-/plugin install wasp-claude-tools@wasp-plugins
+/plugin install wasp@wasp-plugins
 ```
 
 Or browse available plugins interactively:
@@ -24,7 +24,7 @@ Or browse available plugins interactively:
 
 ## Available Plugins
 
-### wasp-claude-tools
+### wasp
 
 Comprehensive Wasp development assistant with:
 
