@@ -13,6 +13,7 @@ A Claude Code plugin for Wasp framework development, providing documentation cac
 
 Or install from a remote repository:
 
+TODO: fix this
 ```bash
 claude plugin add https://github.com/wasp-lang/wasp-claude-tools
 ```
@@ -26,9 +27,6 @@ Interactive guided setup for configuring a new Wasp app project using Wasp featu
 
 ### 2. Deployment Guide (`deploying-app`)
 Let Claude Code guide you through using Wasp's CLI for easy deployment of your Wasp app to Railway or Fly.io.
-
-### 3. Knowledge Integration (`adding-wasp-knowledge-claude`)
-Add Wasp knowledge and conventions to your project's CLAUDE.md file.
 
 ## Hooks
 

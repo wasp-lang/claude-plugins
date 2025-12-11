@@ -2,7 +2,7 @@
 description: Add Wasp knowledge to your project's CLAUDE.md
 ---
 
-1. copy [general-wasp-knowledge.md](../general-wasp-knowledge.md) to the user's project `.claude/knowledge` directory.
+1. copy the file `${CLAUDE_PLUGIN_ROOT}/general-wasp-knowledge.md` to the user's project `.claude/knowledge` directory using the Bash tool with `cp` command.
 2. append it to the user's CLAUDE.md file as an import:
 ```markdown
 # Wasp Knowledge
