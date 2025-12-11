@@ -9,5 +9,5 @@ description: Add Wasp knowledge to your project's CLAUDE.md
 
 Wasp knowledge can be found at @.claude/knowledge/general-wasp-knowledge.md
 ```
-3. create an empty file `.wasp-knowledge-initialized` in the `.claude/hooks/` directory (use the Bash tool with `touch` command).
+3. create an empty file using the Bash tool with `touch` command at `${CLAUDE_PLUGIN_ROOT}/hooks/.wasp-knowledge-initialized` (NOT IN THE USER'S PROJECT DIRECTORY).
 4. inform the user that Claude now has access to info on Wasp's features, commands, workflows, and best practices.
