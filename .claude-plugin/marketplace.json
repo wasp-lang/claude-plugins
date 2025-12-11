@@ -7,13 +7,12 @@
   },
   "metadata": {
     "description": "Official Wasp framework plugins for Claude Code",
-    "version": "1.0.0",
-    "pluginRoot": "./plugins"
+    "version": "1.0.0"
   },
   "plugins": [
     {
       "name": "wasp-claude-tools",
-      "source": "./wasp-claude-tools",
+      "source": "./plugins/wasp-claude-tools",
       "description": "Wasp framework development assistant with documentation caching, deployment guides, and interactive setup wizard",
       "version": "1.0.0",
       "author": {
