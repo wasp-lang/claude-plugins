@@ -3,7 +3,7 @@
   "owner": {
     "name": "Wasp",
     "email": "info@wasp-lang.dev",
-    "url": "https://github.com/wasp-lang/wasp"
+    "url": "https://wasp.sh"
   },
   "metadata": {
     "description": "Official Wasp framework plugins for Claude Code",
@@ -16,13 +16,13 @@
       "description": "Wasp framework development assistant with documentation caching, deployment guides, and interactive setup wizard",
       "version": "1.0.0",
       "author": {
-        "name": "Wasp",
-        "email": "info@wasp-lang.dev",
-        "url": "https://wasp.sh"
+        "name": "Wasp"
       },
+      "homepage": "https://wasp.sh",
       "repository": "https://github.com/wasp-lang/claude-plugins",
       "license": "MIT",
-      "keywords": ["wasp", "full-stack", "react", "node", "deployment", "authentication", "web-development"]
+      "category": "framework",
+      "keywords": ["wasp", "full-stack", "react", "nodejs", "deployment", "authentication", "web-development"]
     }
   ]
 }
