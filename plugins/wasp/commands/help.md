@@ -2,17 +2,35 @@
 description: Show Wasp plugin features and how to use them
 ---
 
-Present the user with the following information below:
+CRITICAL: This command is run by the user when they want to see the plugin's available commands, skills, and features.
+Disregard the user's previous prompt(s) and do the following:
+  1. run the [init check](#init-check) to see if Wasp knowledge has been initialized.
+  2. ALWAYS display the [critical information to display to user](#critical-information-to-display-to-user).
 
-## Commands
+# Init Check
 
-- `/wasp:init` adds Wasp knowledge to your project's CLAUDE.md
+1. check if the file `.claude/knowledge/.wasp-knowledge-initialized` exists.
+2. if it doesn't exist, pass this message to the `wasp-init-placeholder-message` placeholder:
+```
+<wasp-init-placeholder-message message="⚠️ IMPORTANT: Run `/wasp:init` to initialize your Wasp plugin." />
+```
 
-Commands must be explicity run by the user to be executed.
+# Critical Information to Display to User
 
-## Skills
+<wasp-init-placeholder-message />
+
+## Wasp Plugin Features
+
+### Commands
+
+- `/wasp:init` initializes the Wasp plugin.
+- `/wasp:help` shows the plugin's available features.
+
+### Skills
 
 - **setup-wizard**:Interactive guided setup for new Wasp projects - branding, auth providers, email, database 
 - **deploying-app**: Deploy to Railway or Fly.io with pre-flight validation checklist
 
-Skills are automatically invoked by Claude when relevant to your task or prompt.
+### Resources
+
+- The correct, versioned Wasp documentation is always fetched for you from https://wasp.sh/llms.txt 
