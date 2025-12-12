@@ -26,36 +26,11 @@ Or browse available plugins interactively:
 
 ### wasp
 
-Comprehensive Wasp development assistant with:
+Comprehensive assistance for Wasp framework development:
 
-- **Documentation Caching**: Automatically caches Wasp documentation locally for fast access and offline use
-- **Setup Wizard**: Interactive guided setup for configuring new Wasp app projects
-- **Deployment Guide**: Step-by-step deployment to Railway or Fly.io with pre-flight validation
-- **Knowledge Integration**: Add Wasp best practices and conventions to your project's CLAUDE.md
-
-#### Skills included:
-
-| Skill | Description |
-|-------|-------------|
-| `setup-wizard` | Interactive guided setup for new Wasp projects |
-| `deploying-app` | Deploy to Railway or Fly.io with validation |
-| `adding-wasp-knowledge-claude` | Add Wasp conventions to CLAUDE.md |
-
-#### Recommended permissions:
-
-Add these to your project settings for the best experience:
-
-```json
-{
-  "permissions": {
-    "allow": [
-      "Bash(wasp start)",
-      "Bash(wasp db:*)",
-      "WebFetch(domain:wasp.sh)"
-    ]
-  }
-}
-```
+- **Configure Wasp**: Add Wasp framework features like authentication, database, email, CSS frameworks, and other integrations
+- **Deployment Guides**: Step-by-step deployment to Railway or Fly.io with pre-flight validation
+- **Knowledge Integration**: Add Wasp best practices and conventions to your Claude Code session
 
 ## Adding to Your Project
 

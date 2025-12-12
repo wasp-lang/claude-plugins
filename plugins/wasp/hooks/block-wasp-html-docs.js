@@ -1,7 +1,4 @@
 #!/usr/bin/env node
-const path = require('path');
-const { execSync } = require('child_process');
-const { isCacheFileValid, convertWaspDocUrlToCachePath } = require('./wasp-docs-cache-utils');
 
 let input = '';
 process.stdin.on('data', (chunk) => (input += chunk));
@@ -12,31 +9,16 @@ process.stdin.on('end', async () => {
     const toolInput = data.tool_input || {};
 
     // We only block WebFetch for Wasp docs and not WebSearch, because
-    // 1. WebSearch could return blogposts or 3rd-party tutorials, which we don't want to block.
-    // 2. If WebSearch returns our own Wasp doc URLs, WebFetch will be called and it will be re-routed to cached docs.
+    // WebSearch could return blogposts or 3rd-party tutorials, which we don't want to block.
     if (toolName === 'WebFetch') {
       const url = toolInput.url || '';
 
-      const isWaspDocUrl = 
-        url.includes('wasp-lang.dev/docs/') || 
-        url.includes('wasp.sh/docs/') || 
-        (url.includes('raw.githubusercontent.com') && url.includes('/wasp/') && url.includes('/docs/'));
+      const isWaspDocUrl =
+        url.includes('wasp-lang.dev/docs') ||
+        url.includes('wasp.sh/docs');
 
       if (isWaspDocUrl) {
-        const { cachePath } = convertWaspDocUrlToCachePath(url);
-
-        if (cachePath) {
-          if (isCacheFileValid(cachePath)) {
-            console.error(`DOC_CACHED: ${cachePath}\n\nThis doc is already cached. Use the Read tool to access it.`);
-            process.exit(2);
-          }
-
-          cacheAllDocsSync();
-          console.error(`DOC_CACHED: ${cachePath}\n\nThis doc has been cached. Use the Read tool to access it.`);
-          process.exit(2);
-        }
-
-        console.error(`BLOCKED: ${url}\n\nUse https://wasp.sh/llms.txt to find raw GitHub documentation URLs.`);
+        console.error(`BLOCKED: ${url}\n\nPlease use https://wasp.sh/llms.txt to find the LLM-friendly documentation. This file contains a map of all Wasp documentation with raw.githubusercontent.com URLs that you can fetch directly.`);
         process.exit(2);
       }
     }
@@ -46,12 +28,3 @@ process.stdin.on('end', async () => {
     process.exit(0);
   }
 });
-
-function cacheAllDocsSync() {
-  const cacheScript = path.join(__dirname, 'cache-all-wasp-docs.js');
-  try {
-    execSync(`node "${cacheScript}"`, { stdio: 'ignore' });
-  } catch {
-    // Ignore errors - best effort caching.
-  }
-}
