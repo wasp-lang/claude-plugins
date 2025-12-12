@@ -3,7 +3,8 @@ const fs = require('fs');
 const path = require('path');
 
 // Check if .wasp-knowledge-initialized file exists
-const initFilePath = path.join(__dirname, '.wasp-knowledge-initialized');
+const knowledgeDirectory = path.join(process.cwd(), '.claude/knowledge');
+const initFilePath = path.join(process.cwd(), '.claude/knowledge/.wasp-knowledge-initialized');
 
 if (!fs.existsSync(initFilePath)) {
     const styles = {
@@ -29,7 +30,9 @@ if (!fs.existsSync(initFilePath)) {
     hookSpecificOutput: {
       hookEventName: 'SessionStart',
       additionalContext: 
-        `If they user replies 'opt out', create the ${initFilePath} file using the Bash tool with \`touch\` command.`,
+        `If they user replies 'opt out':
+        - create the ${knowledgeDirectory} directory using the Bash tool with \`mkdir -p\` command.
+        - create the ${initFilePath} file using the Bash tool with \`touch\` command.`,
     },
   };
   console.log(JSON.stringify(result));
