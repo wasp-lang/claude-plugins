@@ -21,6 +21,14 @@ In a Claude Code session, run the following command:
 /plugin install wasp@wasp-plugins
 ```
 
+> [!IMPORTANT]
+> After installing, run `/wasp:init` to initialize the plugin!
+
+## Commands
+
+- `/wasp:init` - Initialize the plugin
+- `/wasp:help` - Show available plugin features
+
 ## Skills
 
 This plugin provides skills that Claude will automatically invoke when appropriate:
