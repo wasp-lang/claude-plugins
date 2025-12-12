@@ -13,7 +13,7 @@
     {
       "name": "wasp",
       "source": "./plugins/wasp",
-      "description": "Resources to help build full-stack React, NodeJS, and Prisma apps even faster.\n\nRun:\n  🧠 `/wasp:init` after installing to add Wasp knowledge to Claude's memory\n  💬 `/wasp:help` to see Wasp plugin features and how to use them",
+      "description": "Resources to help build full-stack React, NodeJS, and Prisma apps even faster.\n\nAfter installing run:\n  - /wasp:init\n    - 🧠 adds Wasp knowledge to Claude's memory\n  - /wasp:help\n    - 📚 shows Wasp plugin features and how to use them",
       "version": "1.0.0",
       "author": {
         "name": "Wasp"
