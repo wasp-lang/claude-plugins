@@ -1,21 +1,25 @@
 # Wasp App
 
-This project uses TypeScript and Wasp, a batteries-included framework for building full-stack web apps with React, Node.js, and Prisma: [Introduction](./cached-docs/introduction/introduction.md)
+This project uses TypeScript and Wasp, a batteries-included framework for building full-stack web apps with React, Node.js, and Prisma.
 
 ## Accessing Wasp Knowledge
 
-1. check the [cached-docs](./cached-docs) directory for relevant docs.
-2. if they don't exist, run the [cache-all-wasp-docs.js](../hooks/cache-all-wasp-docs.js) script.
+Use the raw text docs URL: https://wasp.sh/llms.txt (latest) or https://wasp.sh/llms-{version}.txt (versioned)
 
 ## Start the Dev Servers
 
-Start all servers as background tasks in this Claude Code session to access dev server logs. See [CLI Reference](./cached-docs/general/cli.md) for commands.
+IMPORTANT! Start all servers as *background tasks* in this Claude Code session to access dev server logs. See the **CLI Reference** docs section for commands.
 
-Use the chrome-devtools mcp server to access the client app in the browser.
+The chrome-devtools mcp server can be used to access the client app console in the browser.
 
 ## Starter Templates
 
-Wasp can scaffold boilerplate starter apps: [Starter Templates](./cached-docs/project/starter-templates.md)
+Wasp can scaffold various boilerplate starter apps:
+```bash
+wasp new
+```
+
+See the **Starter Templates** docs section for more details.
 
 ## Project Structure
 
@@ -45,17 +49,19 @@ src/
 
 ## Project Setup & Customization
 
-- Wasp provides layers of customization on top of the tools it uses (vite, expressjs, react-query, client and server setup, etc.): [Project Setup & Customization](./cached-docs/project/)
+- Wasp provides layers of customization on top of the tools it uses (vite, expressjs, react-query, client and server setup, etc.): see the **Project Setup & Customization** docs section.
 
 ## Advanced Features
 
-Wasp provides [advanced features](./cached-docs/advanced/):
+Wasp provides **advanced features**:
 - custom HTTP API endpoints
 - background (cron) jobs
 - type-safe links
 - websockets
 - middleware
 - email sending
+
+See the **Advanced Features** docs section for more details.
 
 ## Import Conventions
 
@@ -73,7 +79,7 @@ Wasp provides [advanced features](./cached-docs/advanced/):
 - ❌ Never relative paths
 
 **In main.wasp.ts:**
-TODO: add more info about main.wasp.ts conventions
+See the **TypeScript Config** docs section for more details.
 
 ## Common Mistakes
 

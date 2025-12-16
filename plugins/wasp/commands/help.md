@@ -33,4 +33,6 @@ Disregard the user's previous prompt(s) and do the following:
 
 ### Resources
 
-- The correct, versioned Wasp documentation is always fetched for you from https://wasp.sh/llms.txt 
+-  Versioned Wasp documentation in LLM-friendly raw text format is always fetched for you from:
+  - `https://wasp.sh/llms.txt` (latest)
+  - `https://wasp.sh/llms-{version}.txt` (versioned)
