@@ -1,28 +1,52 @@
 # Wasp Claude Code Plugin
 
-A Claude Code plugin for Wasp framework development, providing LLM-friendly documentation access, best practices, and tested workflows.
+A Claude Code plugin for Wasp framework development, providing optimized raw text Wasp documentation for LLMs, best practices, and tested workflows.
 
 ## Features
 
-- **Knowledge Integration**: Add Wasp best practices and conventions to your project's CLAUDE.md
-- **LLM-Friendly Documentation**: Automatically directs to raw Wasp documentation from https://wasp.sh/llms.txt for optimal LLM grounding
-- **Configure Wasp**: Add Wasp framework features like authentication, database, email, CSS frameworks, and other integrations
-- **Deployment Guide**: Step-by-step deployment to Railway or Fly.io with pre-flight validation
+- **AI-Friendly Documentation**: Raw text, versioned Wasp documentation access optimized for LLMs 
+- **Import Wasp Knowledge**: Import Wasp best practices and conventions to your project's CLAUDE.md
+- **Configure Wasp**: Easily add Wasp framework features like authentication, database, email, CSS frameworks, and other integrations
+- **Deployment Guide**: Claude Code will guide you through deploying your Wasp app to Railway or Fly.io
 
 ## Installation
 
-In a Claude Code session, run the following command:
+### Add the Wasp marketplace
 
 ```bash
-/plugin marketplace add wasp-lang/claude-plugins
+claude plugin marketplace add wasp-lang/claude-plugins
 ```
+
+### Install the Wasp plugin
 
 ```bash
-/plugin install wasp@wasp-plugins
+claude plugin install wasp@wasp-plugins --scope project
 ```
 
-> [!IMPORTANT]
-> After installing, run `/wasp:init` to initialize the plugin!
+> [!NOTE]
+> We suggest installing the plugin at the `project` scope (`settings.json` are commited to git).
+> Or by using the `local` scope (`settings.local.json` are not commited to git).
+
+Or install the plugin interactively in a running Claude Code session:
+
+```bash
+/plugin
+```
+
+### Configure and Initialize the plugin
+
+After installing, in an active session, run:
+```bash
+/plugin
+```
+- select `wasp-plugins` under the `marketplaces` tab
+- select the `auto-update` option to enable automatic updates of the plugin
+
+Then run the initialize command to import curated Wasp resources into your project's CLAUDE.md file.
+
+```bash
+/wasp:init
+```
 
 ## Commands
 
