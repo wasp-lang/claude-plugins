@@ -60,7 +60,10 @@ This plugin provides skills that Claude will automatically invoke when appropria
 ### 1. Configure Wasp (`configure-wasp`)
 Configure Wasp framework features like authentication, database, email providers, CSS frameworks, and other Wasp integrations. Each invocation focuses on one feature at a time.
 
-### 2. Deployment Guide (`deploying-app`)
+### 2. Start Dev Server (`start-dev-server`)
+Start the Wasp development environment with proper database setup and migrations. Detects your database type (PostgreSQL vs SQLite), handles non-interactive terminal issues with Prisma migrations, and starts the dev server as a background task.
+
+### 3. Deployment Guide (`deploying-app`)
 Let Claude Code guide you through using Wasp's CLI for easy deployment of your Wasp app to Railway or Fly.io.
 
 ## Hooks
