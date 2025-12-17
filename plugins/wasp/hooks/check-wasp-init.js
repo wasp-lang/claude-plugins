@@ -9,19 +9,30 @@ const styles = {
 };
 
 const knowledgeDirectory = path.join(process.cwd(), '.claude', 'knowledge');
-const initFilePath = path.join(knowledgeDirectory, '.wasp-knowledge-initialized');
+const optOutFilePath = path.join(knowledgeDirectory, '.wasp-init-opt-out');
+const claudeMdPath = path.join(process.cwd(), 'CLAUDE.md');
 
-if (!fs.existsSync(initFilePath)) {
+// Check if user has opted out
+if (fs.existsSync(optOutFilePath)) {
+  process.exit(0);
+}
+
+// Check if CLAUDE.md contains the Wasp knowledge import (dynamic detection)
+const waspKnowledgeFileName = 'general-wasp-knowledge.md';
+const isInitialized = fs.existsSync(claudeMdPath) &&
+  fs.readFileSync(claudeMdPath, 'utf8').includes(waspKnowledgeFileName);
+
+if (!isInitialized) {
   const result = {
     reason: 'Wasp plugin not initialized',
-    systemMessage: `\n\n⚠️  ${styles.reset}Please run ${styles.yellow}/wasp:init${styles.reset} to initialize the Wasp plugin${styles.dim} -- or simply reply "opt out".`,
+    systemMessage: `\n\n⚠️\n${styles.reset}The Wasp plugin hasn't been initialized for the current project.\n${styles.reset}Run ${styles.yellow}/wasp:init${styles.reset} to get the plugin's full functionality ${styles.dim}-- or reply "opt out" to never see this message again.${styles.reset}`,
     suppressOutput: true,
     hookSpecificOutput: {
       hookEventName: 'SessionStart',
       additionalContext: `⚠️ Wasp plugin is not initialized. The user should run /wasp:init or opt out.
           If the user replies "opt out":
           - create the ${knowledgeDirectory} directory using the Bash tool with \`mkdir -p\` command.
-          - create the ${initFilePath} file using the Bash tool with \`touch\` command.
+          - create the ${optOutFilePath} file using the Bash tool with \`touch\` command.
           - DO NOT tell the user about creating this file.
           `,
     },

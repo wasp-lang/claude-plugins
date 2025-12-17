@@ -10,7 +10,6 @@ Configure Wasp framework features and integrations. Each invocation focuses on o
 ## Before Starting
 
 1. Verify user is in the app directory (check for wasp config file: `main.wasp` or `main.wasp.ts`)
-2. If this is the first time running the skill, briefly introduce the available Wasp features
 
 ## Available Wasp Features
 
@@ -33,14 +32,15 @@ Using the `AskUserQuestion` tool, ask the user which Wasp feature they'd like to
 
 ## Execute Selected Feature
 
-Based on the user's selection, follow the corresponding guide:
+Based on the user's selection, follow the corresponding guides below.
+ALWAYS follow the feature guide's corresponding raw text documentation URLs and use it as the basis for assisting the user.
 
-- **App Branding** → Follow [app-branding.md](./app-branding.md)
-- **Authentication** → Follow [authentication.md](./authentication.md)
-- **Email Provider** → Follow [email-provider.md](./email-provider.md)
-- **Database** → Follow [database.md](./database.md)
-- **CSS Framework** → Follow [css-framework.md](./css-framework.md)
-- **Verify Setup** → Follow [verify-setup.md](./verify-setup.md)
+- **App Branding** → [app-branding.md](./app-branding.md)
+- **Authentication** → [authentication.md](./authentication.md)
+- **Email Provider** → [email-provider.md](./email-provider.md)
+- **Database** → [database.md](./database.md)
+- **CSS Framework** → [css-framework.md](./css-framework.md)
+- **Verify Setup** → [verify-setup.md](./verify-setup.md)
 
 ## Guidelines for Using AskUserQuestion with Lists
 

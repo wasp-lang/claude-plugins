@@ -8,18 +8,29 @@ Use the raw text docs URL: https://wasp.sh/llms.txt (latest) or https://wasp.sh/
 
 ## Start the Dev Servers
 
-IMPORTANT! Start all servers as *background tasks* in this Claude Code session to access dev server logs. See the **CLI Reference** docs section for commands.
+IMPORTANT! Start all servers as *background tasks* in this Claude Code session to access dev server logs:
+```bash
+wasp start db # starts a managed Postgres database -- must have docker installed. (not needed for SQLite)
+wasp db migrate-dev --name <migration-name> # always run database migrations using --name <migration-name> to avoid lagging migrations.
+wasp start # starts the wasp dev server (server and client apps run in parallel)
+```
+See the **CLI Reference** docs section for more commands.
 
-The chrome-devtools mcp server can be used to access the client app console in the browser.
+The chrome-devtools MCP server can be used to check logs and errors in the client app browser console, e.g.:
+```
+plugin:wasp:chrome-devtools - navigate_page (MCP)(type: "url", url: "http://localhost:3000")
+plugin:wasp:chrome-devtools - list_console_messages (MCP)
+```
 
 ## Starter Templates
 
 Wasp can scaffold various boilerplate starter apps:
 ```bash
-wasp new
+wasp new my-basic-app -t basic # creates a basic starter app with core Wasp features
+wasp new my-saas-app -t saas # creates a SaaS starter app with auth, payments, AWS S3, and more (OpenSaaS.sh)
 ```
 
-See the **Starter Templates** docs section for more details.
+See the **Starter Templates** docs section for all available starter templates and their features.
 
 ## Project Structure
 
@@ -89,4 +100,5 @@ See the **TypeScript Config** docs section for more details.
 | Schema changes not applying | Run `wasp db migrate-dev` |
 | Types stale after changes | Restart TS server |
 | Wasp not recognizing changes | **WAIT PATIENTLY** as Wasp recompiles the project. Re-run `wasp start` if necessary.|
+| Errors in client app browser console | Use the chrome-devtools MCP server `plugin:wasp:chrome-devtools` |
 | Persistent weirdness after waiting patiently and restarting. | Run `wasp clean` && `wasp start` |
