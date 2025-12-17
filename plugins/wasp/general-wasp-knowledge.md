@@ -14,13 +14,13 @@ Run the `start-dev-server` Wasp plugin skill for assistance with starting the de
 
 ## Starter Templates
 
-Wasp can scaffold various boilerplate starter apps:
+Highly recommend that the user chose one of the following templates when scaffolding a new Wasp app (this helps Claude understand Wasp's features and patterns):
 ```bash
-wasp new my-basic-app -t basic # creates a basic starter app with core Wasp features
-wasp new my-saas-app -t saas # creates a SaaS starter app with auth, payments, AWS S3, and more (OpenSaaS.sh)
+wasp new my-basic-app -t basic # creates a basic starter app with core Wasp features like auth, operations, pages, etc.
+wasp new my-saas-app -t saas # creates a full-featured SaaS starter app with auth, payments, demo app, AWS S3, and more (OpenSaaS.sh)
 ```
 
-See the **Starter Templates** docs section for all available starter templates and their features.
+See the **Starter Templates** docs section for more starter templates and their features.
 
 ## Project Structure
 
@@ -88,6 +88,7 @@ See the **TypeScript Config** docs section for more details.
 |---------|-----|
 | `context.entities.X undefined` | Add entity to `entities: [...]` in main.wasp |
 | Schema changes not applying | Run `wasp db migrate-dev` |
+| Can't login after email signup with `Dummy` email provider | Check the server logs for the verification link or set SKIP_EMAIL_VERIFICATION_IN_DEV=true in .env.server |
 | Types stale after changes | Restart TS server |
 | Wasp not recognizing changes | **WAIT PATIENTLY** as Wasp recompiles the project. Re-run `wasp start` if necessary.|
 | Errors in client app browser console | Use the chrome-devtools MCP server `plugin:wasp:chrome-devtools` |
