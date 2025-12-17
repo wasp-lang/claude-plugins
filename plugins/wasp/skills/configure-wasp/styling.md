@@ -1,6 +1,6 @@
-# CSS Framework Setup
+# Styling (CSS, UI) Setup
 
-Configure a CSS framework for your Wasp app.
+Configure a CSS framework and/or component libraries for your Wasp app.
 
 ## Prerequisites
 
@@ -9,7 +9,7 @@ Configure a CSS framework for your Wasp app.
 
 ## Steps
 
-1. **Display the available CSS framework options** to the user (e.g., Pure Tailwind CSS, ShadCN UI (on top of Tailwind CSS), etc.)
+1. **Display the available options** to the user (e.g., Pure Tailwind CSS, ShadCN UI (on top of Tailwind CSS), etc.)
 
 2. Using the `AskUserQuestion` tool, ask the user which CSS framework they'd like to use:
 
