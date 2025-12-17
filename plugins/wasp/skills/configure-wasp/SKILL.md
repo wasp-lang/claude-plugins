@@ -1,6 +1,6 @@
 ---
 name: configure-wasp
-description: configure Wasp framework features like authentication, database, email, CSS frameworks, etc. Use when the user wants to add or set up Wasp-specific functionality.
+description: configure Wasp framework features like app branding,authentication, database, email, styling (tailwind, shadcn), etc. Use when the user wants to add or set up Wasp-specific functionality.
 ---
 
 # configure-wasp
@@ -21,7 +21,7 @@ Present these features to the user and let them choose ONE to configure:
 | **Authentication** | Add login methods (Email, Google, GitHub, etc.) |
 | **Email Provider** | Configure email sending (SendGrid, Mailgun, etc.) |
 | **Database** | Set up your database (PostgreSQL, SQLite, etc.) |
-| **CSS Framework** | Add Tailwind CSS or ShadCN UI (on top of Tailwind CSS) |
+| **Styling (CSS, UI)** | Add Tailwind CSS or ShadCN UI (on top of Tailwind CSS) |
 | **Verify Setup** | Test that your app compiles and runs correctly |
 
 ## Feature Selection
@@ -39,7 +39,7 @@ ALWAYS follow the feature guide's corresponding raw text documentation URLs and 
 - **Authentication** → [authentication.md](./authentication.md)
 - **Email Provider** → [email-provider.md](./email-provider.md)
 - **Database** → [database.md](./database.md)
-- **CSS Framework** → [css-framework.md](./css-framework.md)
+- **Styling (CSS, UI)** → [styling.md](./styling.md)
 - **Verify Setup** → [verify-setup.md](./verify-setup.md)
 
 ## Guidelines for Using AskUserQuestion with Lists

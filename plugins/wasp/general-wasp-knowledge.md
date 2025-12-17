@@ -9,18 +9,8 @@ Use the raw text docs URL: https://wasp.sh/llms.txt (latest) or https://wasp.sh/
 ## Start the Dev Servers
 
 IMPORTANT! Start all servers as *background tasks* in this Claude Code session to access dev server logs:
-```bash
-wasp start db # starts a managed Postgres database -- must have docker installed. (not needed for SQLite)
-wasp db migrate-dev --name <migration-name> # always run database migrations using --name <migration-name> to avoid lagging migrations.
-wasp start # starts the wasp dev server (server and client apps run in parallel)
-```
-See the **CLI Reference** docs section for more commands.
 
-The chrome-devtools MCP server can be used to check logs and errors in the client app browser console, e.g.:
-```
-plugin:wasp:chrome-devtools - navigate_page (MCP)(type: "url", url: "http://localhost:3000")
-plugin:wasp:chrome-devtools - list_console_messages (MCP)
-```
+Run the `start-dev-server` Wasp plugin skill for assistance with starting the dev server and handling database setup and migrations.
 
 ## Starter Templates
 

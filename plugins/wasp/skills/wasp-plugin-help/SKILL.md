@@ -47,12 +47,22 @@ Interactive guided setup for adding or configuring Wasp framework features:
 **Authentication**: Add login methods (Email, Google, GitHub, Discord, Slack,etc.)
 **Email Provider**: Configure email sending (SendGrid, Mailgun, SMTP)
 **Database**: Set up PostgreSQL or SQLite
-**CSS Framework**: Add Tailwind CSS or ShadCN UI
+**Styling (CSS, UI)**: Add Tailwind CSS or ShadCN UI
 **Verify Setup**: Test that your app compiles and runs correctly
 
 *Usage:* Just ask Claude something like "help me set up authentication" or "configure my database"
 
-### 2. deploying-app
+### 2. start-dev-server
+Start the Wasp development environment properly:
+- Detects database type (PostgreSQL vs SQLite)
+- Handles non-interactive terminal issues with Prisma migrations
+- Starts the database container only when needed (PostgreSQL)
+- Runs migrations with the correct `script` wrapper
+- Starts the dev server as a background task
+
+*Usage:* Ask Claude "start the dev server", "run migrations", or "help me start development"
+
+### 3. deploying-app
 Guided deployment workflow that helps you:
 - Run a pre-deployment checklist
 - Deploy to Railway or Fly.io using `wasp deploy`
