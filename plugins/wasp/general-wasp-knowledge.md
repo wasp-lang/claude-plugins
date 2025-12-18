@@ -10,9 +10,11 @@ Your training data about Wasp may be outdated. ALWAYS fetch and verify against t
 
 Do not assume you know the correct syntax, API, or patterns from memory.
 
-## Start the Dev Servers
+## Development Workflow
 
-IMPORTANT! Run the `start-dev-server` Wasp plugin skill for assistance with starting the dev server(s) and handling database setup and migrations.
+Before starting any development task on this Wasp project (coding, debugging, adding features), ALWAYS check if the dev server is running (ports 3000 and 3001, or as background tasks in the current session). If not, invoke the `start-dev-server` skill first to give the user the option to start the server as a background task or externally.
+
+This makes it a project-level instruction that Claude will follow.
 
 ## Starter Templates
 
@@ -52,7 +54,7 @@ src/
 
 ## Project Setup & Customization
 
-- Wasp provides layers of customization on top of the tools it uses (vite, expressjs, react-query, client and server setup, etc.): see the **Project Setup & Customization** docs section.
+Wasp provides layers of customization on top of the tools it uses (vite, expressjs, react-query, client and server setup, etc.): see the **Project Setup & Customization** docs section.
 
 ## Advanced Features
 

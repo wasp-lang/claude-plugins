@@ -1,6 +1,6 @@
 ---
 name: configure-wasp
-description: configure Wasp framework features like app branding,authentication, database, email, styling (tailwind, shadcn), etc. Use when the user wants to add or set up Wasp-specific functionality.
+description: configure Wasp framework features and set up their app's branding (meta tags, SEO), authentication (email, social auth providers), database, email providers, styling (tailwind, shadcn), etc. Use when the user wants to add or set up Wasp-specific functionality.
 ---
 
 # configure-wasp
