@@ -21,20 +21,14 @@ This plugin turns Claude Code into a Wasp framework expert, giving you an AI ass
 
 ## 💬 Example Wasp Prompts to Ask Claude
 
-> "Add Google authentication to my app"
-
-> "Help me add ShadCN UI to my app"
-
-> "Start a new SaaS app using Wasp's SaaS starter template" 
-
-> "Set up email sending with SendGrid"
-
-> "Which Wasp features should I use for this task?"
-
-> "Why isn't my recurring job working?"
-
-> "Deploy my app to Railway"
-
+- *"Add `Google authentication` to my app"*  
+- *"Help me add `ShadCN UI` to my app"*  
+- *"Start a new SaaS app using `Wasp's SaaS starter template`"*  
+- *"Set up email sending with `SendGrid`"*  
+- *"Solve the errors in the `browser console`"*  
+- *"Which `Wasp features` should I use for this task?"*  
+- *"Why isn't my `recurring job` working?"*  
+- *"Deploy my app to `Railway`"*  
 
 ## 🤖 Skills
 
@@ -76,7 +70,7 @@ Guided deployment workflow that helps you:
 
 Commands are used to interact with the plugin. Commands are run by the user when they want to invoke a specific prompt/action:
 
-1. `/wasp:init`: 
+1. `/wasp:init`:
   - Initialize the plugin for your project. 
   - Copies Wasp knowledge to your project
   - Links it in your `CLAUDE.md` file
@@ -84,6 +78,11 @@ Commands are used to interact with the plugin. Commands are run by the user when
 
 2. `/wasp:help`:
   - Displays this help guide
+
+3. `/wasp:expert-advice [advice request]`:
+  - Get advice on app improvements and functionality from a Wasp expert
+  - Optionally provide arguments for more specific requests (e.g., `/wasp:expert-advice how can I improve account management?`)
+  - Explores your codebase, Wasp docs, and plugin features to suggest improvements with pros and cons
 
 
 ## 📖 Documentation Access

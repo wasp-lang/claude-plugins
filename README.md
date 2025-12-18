@@ -10,6 +10,7 @@ A Claude Code plugin for developing web apps with the Wasp full-stack framework 
 - optimized raw text Wasp documentation for LLMs
 - integrations guidance
 - best practices
+- expert advice on app improvements
 
 ## Adding to Your Project
 
