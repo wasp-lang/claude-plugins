@@ -6,11 +6,10 @@ Official [Claude Code](https://claude.ai/code) plugins for the [Wasp](https://wa
 
 ### Wasp
 
-A Claude Code plugin for Wasp framework development, providing optimized raw text Wasp documentation for LLMs, best practices, and tested workflows.
-
-### Open SaaS
-
-Coming soon...
+A Claude Code plugin for developing web apps with the Wasp full-stack framework (React, Node.js, and Prisma), providing access to:
+- optimized raw text Wasp documentation for LLMs
+- integrations guidance
+- best practices
 
 ## Adding to Your Project
 
