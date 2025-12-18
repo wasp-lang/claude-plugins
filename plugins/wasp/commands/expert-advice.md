@@ -10,5 +10,3 @@ description: Get advice on app improvements and functionality from a Wasp expert
 5. Present the improvements to the user with their names, descriptions, and pros and cons
 
 **User's assist request:** $ARGUMENTS
-
-

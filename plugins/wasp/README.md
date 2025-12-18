@@ -86,6 +86,8 @@ For the best experience, add these permissions to your project or user settings:
       "Bash(wasp deploy:*)",
       "WebFetch(domain:wasp.sh)",
       "WebFetch(domain:raw.githubusercontent.com)"
+      "Skill(wasp:wasp-plugin-help)",
+      "Skill(wasp:start-dev-server)",
     ]
   }
 }
