@@ -4,13 +4,15 @@ This project uses TypeScript and Wasp, a batteries-included framework for buildi
 
 ## Accessing Wasp Knowledge
 
-Use the raw text docs URL: https://wasp.sh/llms.txt (latest) or https://wasp.sh/llms-{version}.txt (versioned)
+Your training data about Wasp may be outdated. ALWAYS fetch and verify against the current documentation before implementing Wasp features or answering Wasp questions:
+- https://wasp.sh/llms.txt (latest)
+- https://wasp.sh/llms-{version}.txt (versioned)
+
+Do not assume you know the correct syntax, API, or patterns from memory.
 
 ## Start the Dev Servers
 
-IMPORTANT! Start all servers as *background tasks* in this Claude Code session to access dev server logs:
-
-Run the `start-dev-server` Wasp plugin skill for assistance with starting the dev server and handling database setup and migrations.
+IMPORTANT! Run the `start-dev-server` Wasp plugin skill for assistance with starting the dev server(s) and handling database setup and migrations.
 
 ## Starter Templates
 

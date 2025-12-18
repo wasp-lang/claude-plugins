@@ -4,10 +4,10 @@ A Claude Code plugin for Wasp framework development, providing optimized raw tex
 
 ## Features
 
-- **AI-Friendly Documentation**: Raw text, versioned Wasp documentation access optimized for LLMs 
-- **Import Wasp Knowledge**: Import Wasp best practices and conventions to your project's CLAUDE.md
-- **Configure Wasp**: Easily add Wasp framework features like authentication, database, email, CSS frameworks, and other integrations
-- **Deployment Guide**: Claude Code will guide you through deploying your Wasp app to Railway or Fly.io
+- **Optimized Documentation Access**: Claude grounds its knowledge via up-to-date raw text, versioned Wasp documentation
+- **Adds Wasp Knowledge**: Import Wasp best practices and conventions to your project's CLAUDE.md
+- **Configures Wasp**: Easily add Wasp framework features like authentication, database, email, styling (tailwind, shadcn), and other integrations
+- **Deployment Guidance**: Claude Code will guide you through deploying your Wasp app to Railway or Fly.io via the Wasp CLI
 
 ## Installation
 
@@ -51,27 +51,27 @@ Then run the initialize command to import curated Wasp resources into your proje
 ## Commands
 
 - `/wasp:init` - Initialize the plugin
-- `/wasp:help` - Show available plugin features
+- `/wasp:help` - Show the plugin's features, commands, and skills
 
 ## Skills
 
 This plugin provides skills that Claude will automatically invoke when appropriate:
 
 ### 1. Configure Wasp (`configure-wasp`)
-Configure Wasp framework features like authentication, database, email providers, CSS frameworks, and other Wasp integrations. Each invocation focuses on one feature at a time.
+Configure Wasp framework features like authentication, database, email providers, CSS and UI styling libraries, and other Wasp integrations.
 
 ### 2. Start Dev Server (`start-dev-server`)
-Start the Wasp development environment with proper database setup and migrations. Detects your database type (PostgreSQL vs SQLite), handles non-interactive terminal issues with Prisma migrations, and starts the dev server as a background task.
+Start the Wasp development environment with proper database setup and migrations. Detects your database type (PostgreSQL vs SQLite), handles database migrations, and starts the dev server as a background task.
 
 ### 3. Deployment Guide (`deploying-app`)
 Let Claude Code guide you through using Wasp's CLI for easy deployment of your Wasp app to Railway or Fly.io.
 
-## Hooks
+## Background Hooks
 
-The plugin includes two hooks:
-
-- **SessionStart**: Checks if Wasp knowledge has been initialized in the project
-- **PreToolUse (WebFetch)**: Blocks requests to HTML Wasp documentation URLs and directs Claude to use LLM-friendly documentation from https://wasp.sh/llms.txt
+The plugin includes background hooks that:
+- Automatically redirect to LLM-friendly Wasp docs (`llms.txt`) instead of HTML pages
+- Detect your project's Wasp version for versioned documentation
+- Check plugin initialization status on session start
 
 ## Recommended Permissions
 

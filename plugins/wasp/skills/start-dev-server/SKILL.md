@@ -9,6 +9,13 @@ description: start the Wasp dev server, handle database setup, and run migration
 
 1. Verify user is in the app directory (check for `main.wasp` or `main.wasp.ts`)
 2. Detect database type → [detect-database.md](./detect-database.md)
+3. Ask the user if they want Claude to start the dev server(s ) as a background task in the current session, or on their own in a separate terminal:
+  - Starting as a background task (Claude)
+    - Pros: Claude has more autonomy, can respond directly to dev server logs (warnings, errors) and can run Wasp CLI commands for you.
+    - Cons: Certain actions can be slower, and the user has less direct control. Server logs are only visibile to the user from within the `background tasks` tab.
+  - Starting externally (User)
+    - Pros: The user has more direct control over app development and the Wasp CLI commands. Can be advantageous for more advanced users.
+    - Cons: Debugging and feature discovery can be slower, as Claude doesn't have direct access to dev server logs (warnings, errors) or Wasp CLI commands.
 
 ## Workflow
 
