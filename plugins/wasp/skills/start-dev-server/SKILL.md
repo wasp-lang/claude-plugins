@@ -67,5 +67,6 @@ wasp start
 ### Step 5: Verify
 
 1. Confirm client (`localhost:3000`) and server (`localhost:3001`) are running
-2. Note any warnings
-3. Use `plugin:wasp:chrome-devtools` to check browser console for errors
+2. Confirm there are no client app issues in the browser console. Ask the user to choose which tool they'd prefer via the AskUserQuestion tool and run it for the user:
+  - the `mcp__plugin_wasp_chrome-devtools`
+  - Claude Code's built-in Chrome browser function

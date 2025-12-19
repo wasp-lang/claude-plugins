@@ -16,7 +16,7 @@ Before starting any development task on this Wasp project (coding, debugging, ad
 - Check for active background tasks (use `/tasks` command)
 - Or check if ports 3000 (client) and 3001 (server) are in use
 
-If not running, invoke the `plugin:wasp:start-dev-server` skill to start the server as a background task or externally.
+If not running, invoke the `start-dev-server` skill to start the server as a background task or externally.
 
 ### Implementation Checklist
 
@@ -110,7 +110,9 @@ See the **TypeScript Config** section in https://wasp.sh/llms.txt for more detai
 When errors occur:
 1. Check server terminal for backend errors (localhost:3001)
 2. Check client terminal for frontend build errors (localhost:3000)
-3. Use `plugin:wasp:chrome-devtools` for browser console errors
+3. Confirm there are no client app issues in the browser console. Ask the user to choose which tool they'd prefer via the AskUserQuestion tool and run it for the user:
+  - the `mcp__plugin_wasp_chrome-devtools`
+  - Claude Code's built-in Chrome browser function
 
 ### Common Mistakes
 
