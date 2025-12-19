@@ -7,7 +7,7 @@ description: start the Wasp dev server, handle database setup, and run migration
 
 ## Before Starting
 
-1. Verify user is in the app directory (check for `main.wasp` or `main.wasp.ts`)
+1. Use the Glob tool to check for the presence of the `main.wasp` or `main.wasp.ts` file and cd into the project directory if found.
 2. Detect database type → [detect-database.md](./detect-database.md)
 3. Ask the user if they want Claude to start the dev server(s ) as a background task in the current session, or on their own in a separate terminal:
   - Starting as a background task (Claude)
@@ -67,6 +67,6 @@ wasp start
 ### Step 5: Verify
 
 1. Confirm client (`localhost:3000`) and server (`localhost:3001`) are running
-2. Confirm there are no client app issues in the browser console. Ask the user to choose which tool they'd prefer via the AskUserQuestion tool and run it for the user:
+2. Confirm there are no client app issues in the browser console, by asking the user (via the AskUserQuestion tool) to choose which tool they'd prefer so that Claude has full insight into the Wasp app while developing/debugging:
   - the `mcp__plugin_wasp_chrome-devtools`
-  - Claude Code's built-in Chrome browser function
+  - or Claude Code's built-in Chrome browser function (check if its connected with `/chrome` command)

@@ -1,5 +1,5 @@
 ---
-name: wasp-plugin-help
+name: plugin-help
 description: Shows the Wasp plugin's available features, commands, and skills.
 ---
 
@@ -25,45 +25,10 @@ This plugin turns Claude Code into a Wasp framework expert, giving you an AI ass
 - *"Help me add `ShadCN UI` to my app"*  
 - *"Start a new SaaS app using `Wasp's SaaS starter template`"*  
 - *"Set up email sending with `SendGrid`"*  
-- *"Solve the errors in the `browser console`"*  
+- *"Solve the errors in the browser using the `Chrome DevTools MCP server`"*  
 - *"Which `Wasp features` should I use for this task?"*  
 - *"Why isn't my `recurring job` working?"*  
-- *"Deploy my app to `Railway`"*  
-
-## 🤖 Skills
-
-Skills are context-aware workflows Claude can invoke to help you accomplish specific Wasp tasks. Claude will automatically invoke the relevant skill based on the user's request.
-
-### 1. configure-wasp
-Interactive guided setup for adding or configuring Wasp framework features:
-
-**App Branding**: Set your app's name, description, and meta tags
-**Authentication**: Add login methods (Email, Google, GitHub, Discord, Slack,etc.)
-**Email Provider**: Configure email sending (SendGrid, Mailgun, SMTP)
-**Database**: Set up PostgreSQL or SQLite
-**Styling (CSS, UI)**: Add Tailwind CSS or ShadCN UI
-**Verify Setup**: Test that your app compiles and runs correctly
-
-*Usage:* Just ask Claude something like "help me set up authentication" or "configure my database"
-
-### 2. start-dev-server
-Start the Wasp development environment properly:
-- Detects database type (PostgreSQL vs SQLite)
-- Handles non-interactive terminal issues with Prisma migrations
-- Starts the database container only when needed (PostgreSQL)
-- Runs migrations with the correct `script` wrapper
-- Starts the dev server as a background task
-
-*Usage:* Ask Claude "start the dev server", "run migrations", or "help me start development"
-
-### 3. deploying-app
-Guided deployment workflow that helps you:
-- Run a pre-deployment checklist
-- Deploy to Railway or Fly.io using `wasp deploy`
-- Configure OAuth redirect URLs for production
-- Handle interrupted deployments safely
-
-*Usage:* Ask Claude "help me deploy my app" or "deploy to Railway"
+- *"Deploy my app to `Railway`"* 
 
 
 ## 🔧 Commands
@@ -76,13 +41,34 @@ Commands are used to interact with the plugin. Commands are run by the user when
   - Links it in your `CLAUDE.md` file
   - Run this once per project
 
-2. `/wasp:help`:
-  - Displays this help guide
+2. `/wasp:start-dev-server`:
+  - Start the Wasp development environment as a background task so Claude can have full insight into the Wasp app while developing/debugging.
+  - Uses the skill of the same name with a few explicit properties set.
 
 3. `/wasp:expert-advice [advice request]`:
   - Get advice on app improvements and functionality from a Wasp expert
   - Optionally provide arguments for more specific requests (e.g., `/wasp:expert-advice how can I improve account management?`)
   - Explores your codebase, Wasp docs, and plugin features to suggest improvements with pros and cons
+
+3. `/wasp:help`:
+  - Displays this help guide
+
+
+## 🤖 Skills
+
+Skills are context-aware workflows Claude can invoke to help you accomplish specific Wasp tasks. Claude will automatically invoke the relevant skill based on the user's request.
+
+1. **configure-wasp**
+  - Interactive guided setup for adding or configuring Wasp framework features.
+  - *Usage:* Just ask Claude something like "help me set up authentication" or "configure my database"
+
+2. **start-dev-server**
+  - Start the Wasp development environment, database, and migrations.
+  - *Usage:* Ask Claude "start the dev server", "run migrations", or "help me start development"
+
+3. **deploying-app**
+  - Guided deployment workflow via Wasp's CLI for deploying database, server, and client apps to Railway or Fly.io.
+  - *Usage:* Ask Claude "help me deploy my app" or "deploy to Railway"
 
 
 ## 📖 Documentation Access

@@ -27,12 +27,6 @@ claude plugin install wasp@wasp-plugins --scope project
 > We suggest installing the plugin at the `project` scope (`settings.json` are commited to git).
 > Or by using the `local` scope (`settings.local.json` are not commited to git).
 
-Or install the plugin interactively in a running Claude Code session:
-
-```bash
-/plugin
-```
-
 ### Configure and Initialize the plugin
 
 After installing, in an active session, run:
@@ -86,7 +80,7 @@ For the best experience, add these permissions to your project or user settings:
       "Bash(wasp deploy:*)",
       "WebFetch(domain:wasp.sh)",
       "WebFetch(domain:raw.githubusercontent.com)"
-      "Skill(wasp:wasp-plugin-help)",
+      "Skill(wasp:plugin-help)",
       "Skill(wasp:start-dev-server)",
     ]
   }

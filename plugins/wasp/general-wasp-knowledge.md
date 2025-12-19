@@ -2,28 +2,39 @@
 
 This project uses TypeScript and Wasp, a batteries-included framework for building full-stack web apps with React, Node.js, and Prisma.
 
-## Documentation
+## Session Setup
 
-Your training data about Wasp may be outdated. You MUST fetch and verify against the current documentation before implementing Wasp features or answering Wasp questions:
-- https://wasp.sh/llms.txt (latest)
-- https://wasp.sh/llms-{version}.txt (versioned)
+**At the start of any Wasp development session, proactively suggest the user set up these two tools for the best development experience:**
+
+1. **Start the dev server** - Run `/wasp:start-dev-server` to start the Wasp development servers as background tasks. This gives Claude direct access to server logs, build errors, and the ability to run Wasp CLI commands.
+
+2. **Enable Chrome DevTools** - Use the `mcp__plugin_wasp_chrome-devtools` MCP server to give Claude visibility into browser console logs, network requests, and runtime errors. This provides end-to-end insight for debugging and feature development.
+
+Together, these tools allow Claude to see both backend (server logs, build output) and frontend (console errors, network issues) in real-time, dramatically improving debugging and development speed.
 
 ## Workflows
 
+### Development Workflow Checklist
+
+1. [ ] Fetch docs from https://wasp.sh/llms.txt to ground your Wasp knowledge
+2. [ ] Check if the feature exists in the current codebase or starter template for reference patterns
+3. [ ] Identify which files need changes: wasp config file (`main.wasp` or `main.wasp.ts`), `schema.prisma`, `src/`
+4. [ ] Plan the order: schema → migrate → wasp config file → TypeScript
+5. [ ] Invoke the `start-dev-server` skill to verify that changes were successfully implemented 
+
+### Documentation
+
+Fetch and verify your knowledge against the current Wasp documentation before implementing Wasp features or answering Wasp questions as your Wasp knowledge may be outdated:
+- https://wasp.sh/llms.txt (latest)
+- https://wasp.sh/llms-{version}.txt (versioned)
+
 ### Development Server
 
-Before starting any development task on this Wasp project (coding, debugging, adding features), you MUST check if the dev server is running:
+Before starting any development task on this Wasp project (coding, debugging, adding features), check if the development servers are running:
 - Check for active background tasks (use `/tasks` command)
 - Or check if ports 3000 (client) and 3001 (server) are in use
 
 If not running, invoke the `start-dev-server` skill to start the server as a background task or externally.
-
-### Implementation Checklist
-
-1. Fetch https://wasp.sh/llms.txt to verify current syntax (see "Documentation" above)
-2. Check if the feature exists in the current codebase or starter template for reference patterns
-3. Identify which files need changes: wasp config file (`main.wasp` or `main.wasp.ts`), `schema.prisma`, `src/`
-4. Plan the order: schema → migrate → wasp config file → TypeScript
 
 ### Schema Changes
 
@@ -121,6 +132,6 @@ When errors occur:
 | `context.entities.X undefined` | Add entity to `entities: [...]` in main.wasp |
 | Schema changes not applying | Run `wasp db migrate-dev --name <descriptive-name>` |
 | Can't login after email signup with `Dummy` email provider | Check the server logs for the verification link or set SKIP_EMAIL_VERIFICATION_IN_DEV=true in .env.server |
-| Types stale after changes | Restart TS server |
+| Types stale/IDE errors after changes | Restart TS server `Cmd+Shift+P`|
 | Wasp not recognizing changes | **WAIT PATIENTLY** as Wasp recompiles the project. Re-run `wasp start` if necessary.|
 | Persistent weirdness after waiting patiently and restarting. | Run `wasp clean` && `wasp start` |
