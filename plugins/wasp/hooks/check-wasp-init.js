@@ -2,27 +2,29 @@
 const fs = require('fs');
 const path = require('path');
 
-const styles = {
-  reset: '\x1b[0m',
-  yellow: '\x1b[33m',
-  dim: '\x1b[2m',
-};
-
-const knowledgeDirectory = path.join(process.cwd(), '.claude', 'knowledge');
+const cwd = process.cwd();
+const knowledgeDirectory = path.join(cwd, '.claude', 'knowledge');
 const optOutFilePath = path.join(knowledgeDirectory, '.wasp-init-opt-out');
-const claudeMdPath = path.join(process.cwd(), 'CLAUDE.md');
+const claudeMdPath = path.join(cwd, 'CLAUDE.md');
+const waspKnowledgeFileName = 'general-wasp-knowledge.md';
 
-// Check if user has opted out
-if (fs.existsSync(optOutFilePath)) {
+function isWaspProjectRoot() {
+  return fs.existsSync(path.join(cwd, '.wasproot'));
+}
+
+if (!isWaspProjectRoot() || fs.existsSync(optOutFilePath)) {
   process.exit(0);
 }
 
-// Check if CLAUDE.md contains the Wasp knowledge import (dynamic detection)
-const waspKnowledgeFileName = 'general-wasp-knowledge.md';
 const isInitialized = fs.existsSync(claudeMdPath) &&
   fs.readFileSync(claudeMdPath, 'utf8').includes(waspKnowledgeFileName);
 
 if (!isInitialized) {
+  const styles = {
+    reset: '\x1b[0m',
+    yellow: '\x1b[33m',
+    dim: '\x1b[2m',
+  };
   const result = {
     reason: 'Wasp plugin not initialized',
     systemMessage: `\n\n⚠️\n${styles.reset}The Wasp plugin hasn't been initialized for the current project.\n${styles.reset}Run ${styles.yellow}/wasp:init${styles.reset} to get the plugin's full functionality ${styles.dim}-- or reply "opt out" to never see this message again.${styles.reset}`,
