@@ -1,7 +1,0 @@
-# OS files
-.DS_Store
-Thumbs.db
-
-# Local development
-.env
-.env.local

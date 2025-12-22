@@ -16,10 +16,10 @@ Together, these tools allow Claude to see both backend (server logs, build outpu
 
 ### Development Workflow Checklist
 
-1. [ ] Fetch docs from https://wasp.sh/llms.txt to ground your Wasp knowledge
+1. [ ] Fetch Wasp [documentation](https://wasp.sh/llms.txt) to ground your knowledge
 2. [ ] Check if the feature exists in the current codebase or starter template for reference patterns
 3. [ ] Identify which files need changes: wasp config file (`main.wasp` or `main.wasp.ts`), `schema.prisma`, `src/`
-4. [ ] Plan the order: schema → migrate → wasp config file → TypeScript
+4. [ ] Plan the order, preferring to work in vertical slices and starting from the bottom up, if necessary.
 5. [ ] Invoke the `start-dev-server` skill to verify that changes were successfully implemented 
 
 ### Documentation
@@ -38,10 +38,12 @@ If not running, invoke the `start-dev-server` skill to start the server as a bac
 
 ### Schema Changes
 
-After ANY change to `schema.prisma`:
-1. Stop the dev server if running
-2. Run `wasp db migrate-dev --name <descriptive-name>`
-3. Restart the dev server
+Changes to `schema.prisma` are not applied until `wasp db migrate-dev --name <descriptive-name>` runs. Continue coding freely and run migrations when ready to test.
+
+**Track pending migrations:** The dev server warns about this, but users may miss it in background tasks. Remind them before testing/viewing the app, and offer to run migrations:
+- [ ] stop server
+- [ ] migrate
+- [ ] restart
 
 ## Project Reference
 
@@ -56,9 +58,9 @@ After ANY change to `schema.prisma`:
 ├── schema.prisma             # Database schema (Prisma)
 ```
 
-### Code Organization
+### Recommended Code Organization
 
-Organize by **feature** (vertical), not by type (client/server):
+Unless user specifies otherwise, use a vertical, per-feature code organization (not per-type):
 
 ```
 src/
@@ -73,17 +75,17 @@ src/
 
 ### Starter Templates
 
-Highly recommend that the user chose one of the following templates when scaffolding a new Wasp app (this helps Claude understand Wasp's features and patterns):
+Highly recommend that the user chose one of the following templates when scaffolding a new Wasp app:
 ```bash
 wasp new my-basic-app -t basic # creates a basic starter app with core Wasp features like auth, operations, pages, etc.
 wasp new my-saas-app -t saas # creates a full-featured SaaS starter app with auth, payments, demo app, AWS S3, and more (OpenSaaS.sh)
 ```
 
-See the **Starter Templates** section in https://wasp.sh/llms.txt for more templates.
+See the **Starter Templates** section in the Wasp documentation for more templates.
 
 ### Customization
 
-Wasp provides layers of customization on top of the tools it uses (vite, expressjs, react-query, client and server setup, etc.): see the **Project Setup & Customization** section in https://wasp.sh/llms.txt.
+**Do NOT configure Vite, Express, React Query, etc. the usual way.** Wasp has its own mechanisms for customizing these tools. See the **Project Setup & Customization** section in the Wasp docs.
 
 ### Advanced Features
 
@@ -95,35 +97,40 @@ Wasp provides **advanced features**:
 - middleware
 - email sending
 
-See the **Advanced Features** section in https://wasp.sh/llms.txt for more details.
+See the **Advanced Features** section in the Wasp docs for more details.
 
-### Import Conventions
+### Wasp Conventions
 
+#### Imports
 **In TypeScript files:**
 - ✅ `import type { User } from 'wasp/entities'`
 - ✅ `import type { GetTasks } from 'wasp/server/operations'`
 - ✅ `import { getTasks, createTask, useQuery } from 'wasp/client/operations'`
 - ✅ `import { SubscriptionStatus } from '@prisma/client'` (for Prisma enums)
 - ✅ Local code: relative paths `import { X } from './X'`
-- ⚠️ Call actions directly using `async/await`. DO NOT use Wasp's `useAction` hook unless optimistic updates are needed.
 
 **In main.wasp:**
-- ✅ `fn: import { getTasks } from "@src/tasks/operations.ts"`
+- ✅ `fn: import { getTasks } from "@src/tasks/operations"`
 - ❌ Never relative paths
 
 **In main.wasp.ts:**
-See the **TypeScript Config** section in https://wasp.sh/llms.txt for more details.
+See the **TypeScript Config** section in the Wasp docs for more details.
+
+#### Operations
+- ⚠️ Call actions directly using `async/await`. DO NOT use Wasp's `useAction` hook unless optimistic updates are needed.
 
 ## Troubleshooting
 
 ### Debugging
 
-When errors occur:
-1. Check server terminal for backend errors (localhost:3001)
-2. Check client terminal for frontend build errors (localhost:3000)
-3. Confirm there are no client app issues in the browser console. Ask the user to choose which tool they'd prefer via the AskUserQuestion tool and run it for the user:
-  - the `mcp__plugin_wasp_chrome-devtools`
+1. check the `wasp start` output for logs and errors from the:
+  a. API server/backend
+  b. client dev server (client building). 
+2. Also check the browser for client runtime logs and errors that are not printed by the `wasp start` command. The user can choose which tool they'd prefer via the AskUserQuestion tool and run it for the user:
+  - the `mcp__plugin_wasp_chrome-devtools` MCP server that comes installed with the plugin
   - Claude Code's built-in Chrome browser function
+  - they can check manually
+  - other
 
 ### Common Mistakes
 

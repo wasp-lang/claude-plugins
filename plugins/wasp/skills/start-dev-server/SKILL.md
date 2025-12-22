@@ -70,3 +70,5 @@ wasp start
 2. Confirm there are no client app issues in the browser console, by asking the user (via the AskUserQuestion tool) to choose which tool they'd prefer so that Claude has full insight into the Wasp app while developing/debugging:
   - the `mcp__plugin_wasp_chrome-devtools`
   - or Claude Code's built-in Chrome browser function (check if its connected with `/chrome` command)
+  - the user can check manually
+  - other

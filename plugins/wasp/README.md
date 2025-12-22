@@ -1,10 +1,10 @@
 # Wasp Claude Code Plugin
 
-A Claude Code plugin for Wasp framework development, providing optimized raw text Wasp documentation for LLMs, best practices, and tested workflows.
+A Claude Code plugin that provides an optimal experience developing full-stack web apps with Wasp (React, Node.js, Prisma) through curated access to docs, workflows and best practices.
 
 ## Features
 
-- **Optimized Documentation Access**: Claude grounds its knowledge via up-to-date raw text, versioned Wasp documentation
+- **Wasp documentation**: Ensures that Claude always accesses the right version of the Wasp framework documentation (in sync with your current Wasp project) at the right times, with additional enhancements (coming in the future: caching, additional knowledge from Wasp Github and Discord, ...).
 - **Adds Wasp Knowledge**: Import Wasp best practices and conventions to your project's CLAUDE.md
 - **Configures Wasp**: Easily add Wasp framework features like authentication, database, email, styling (tailwind, shadcn), and other integrations
 - **Deployment Guidance**: Claude Code will guide you through deploying your Wasp app to Railway or Fly.io via the Wasp CLI
@@ -31,34 +31,24 @@ claude plugin install wasp@wasp-plugins --scope project
 
 After installing, in an active session, run:
 ```bash
-/plugin
-```
-- select `wasp-plugins` under the `marketplaces` tab
-- select the `auto-update` option to enable automatic updates of the plugin
-
-Then run the initialize command to import curated Wasp resources into your project's CLAUDE.md file.
-
-```bash
 /wasp:init
 ```
+- This will add Wasp knowledge to your project's CLAUDE.md file.
+
+```bash
+/wasp:start-dev-server
+```
+- This will start the Wasp development environment as a background task so Claude can have full insight into the Wasp app while developing/debugging.
+
+Finally, to access more information about the plugin and its features, run:
+```bash
+/wasp:help
+```
+- This will show the plugin's features, commands, and skills.
 
 ## Commands
 
-- `/wasp:init` - Initialize the plugin
-- `/wasp:help` - Show the plugin's features, commands, and skills
-
-## Skills
-
-This plugin provides skills that Claude will automatically invoke when appropriate:
-
-### 1. Configure Wasp (`configure-wasp`)
-Configure Wasp framework features like authentication, database, email providers, CSS and UI styling libraries, and other Wasp integrations.
-
-### 2. Start Dev Server (`start-dev-server`)
-Start the Wasp development environment with proper database setup and migrations. Detects your database type (PostgreSQL vs SQLite), handles database migrations, and starts the dev server as a background task.
-
-### 3. Deployment Guide (`deploying-app`)
-Let Claude Code guide you through using Wasp's CLI for easy deployment of your Wasp app to Railway or Fly.io.
+Check out the individual [commands](./commands) and [skills](./skills) to learn more about what they are and what they do.
 
 ## Background Hooks
 
@@ -77,7 +67,6 @@ For the best experience, add these permissions to your project or user settings:
     "allow": [
       "Bash(wasp start)",
       "Bash(wasp db:*)",
-      "Bash(wasp deploy:*)",
       "WebFetch(domain:wasp.sh)",
       "WebFetch(domain:raw.githubusercontent.com)"
       "Skill(wasp:plugin-help)",
