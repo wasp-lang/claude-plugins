@@ -22,9 +22,12 @@ description: Start the Wasp dev server and set up full debugging visibility. Thi
 ### Step 1: Ensure the Development Database is Running
 
 Grep the `.env.server` file for `DATABASE_URL`. If no line starts with `DATABASE_URL`, continue following this step.
-If the user does have their own DATABASE_URL env var set, skip to [Step 2](#step-2-start-dev-server).
+If the user does have their own DATABASE_URL env var set, move on to [Step 2](#step-2-start-dev-server).
 
 Check the `schema.prisma` file in the project root for the `datasource` block to see which database is being used.
+
+#### SQLite
+**Skip to [Step 2](#step-2-start-dev-server):** SQLite stores data in a local file, no database server needed.
 
 #### PostgreSQL
 Start the managed database container as a background task:
@@ -36,9 +39,6 @@ wasp start db
 
 Run this as a background task in the current claude code session.
 Wait 5-15 seconds for the database to be ready.
-
-#### SQLite
-**Skip this step:** Do NOT run `wasp start db` because SQLite is a simple file-based database that does not need a database container.
 
 
 ### Step 2: Start Dev Server
