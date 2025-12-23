@@ -1,11 +1,11 @@
 ---
-name: configure-wasp
-description: configure Wasp framework features and set up their app's branding (meta tags, SEO), authentication (email, social auth providers), database, email providers, styling (tailwind, shadcn), etc. Use when the user wants to add or set up Wasp-specific functionality.
+name: add-feature
+description: Add Wasp's built-in features to your app — auth, email, jobs, and more. These are full-stack, batteries-included features that Wasp handles for you. Use when the user wants to add meta tags, authentication (email, social auth providers), email sending, database setup, styling (tailwind, shadcn), or other Wasp-powered functionality.
 ---
 
-# configure-wasp
+# add-feature
 
-Configure Wasp framework features and integrations. Each invocation focuses on one feature at a time.
+Add Wasp's batteries-included features to your app. Each invocation focuses on one feature at a time.
 
 ## Before Starting
 

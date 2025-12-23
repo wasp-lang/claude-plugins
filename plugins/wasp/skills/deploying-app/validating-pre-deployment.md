@@ -38,9 +38,9 @@ Report format:
 
 ### Step 2: Environment Variables
 
-Based on the wasp config file and the app's features, generate a checklist of required [env vars](../../knowledge/cached-docs/project/env-vars.md) for the user to verify.
+Based on the wasp config file and the app's features, generate a checklist of required env variables, found in the "Env Variables" section of the docs, for the user to verify.
 
-Note that the following env vars are auto-set by Wasp when using [wasp deploy](../../knowledge/cached-docs/deployment/deployment-methods_wasp-deploy_overview.md) to deploy to Railway or Fly.io automatically:
+Note that the following env vars are auto-set by Wasp when using `wasp deploy` to deploy to Railway or Fly.io automatically:
 - `DATABASE_URL`
 - `WASP_WEB_CLIENT_URL`
 - `WASP_SERVER_URL`
@@ -64,7 +64,7 @@ Remind user:
 
 Ask user: "Would you like to test the production build locally? This catches environment-specific issues."
 
-If yes, guide them through the [production build test](../../knowledge/cached-docs/deployment/local-testing.md) process.
+If yes, guide them through the "Testing the build locally" section of the docs.
 
 ### Step 6: Final Checklist
 

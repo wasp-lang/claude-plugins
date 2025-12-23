@@ -17,76 +17,51 @@ Run `/wasp:init` to get the plugin's full functionality.
 
 # 🐝 Wasp Plugin for Claude Code
 
-This plugin turns Claude Code into a Wasp framework expert, giving you an AI assistant that deeply understands Wasp's features, patterns, and best practices.
+## What This Plugin Does
 
-## 💬 Example Wasp Prompts to Ask Claude
+This plugin makes Claude Code work better with Wasp by:
 
-- *"Add `Google authentication` to my app"*  
-- *"Help me add `ShadCN UI` to my app"*  
-- *"Start a new SaaS app using `Wasp's SaaS starter template`"*  
-- *"Set up email sending with `SendGrid`"*  
-- *"Solve the errors in the browser using the `Chrome DevTools MCP server`"*  
-- *"Which `Wasp features` should I use for this task?"*  
-- *"Why isn't my `recurring job` working?"*  
-- *"Deploy my app to `Railway`"* 
+1. **Using the right documentation** — Automatically fetches the correct Wasp docs for your project's version
+2. **Avoiding common mistakes** — Provides Wasp-specific tips, patterns, and best practices so Claude doesn't hallucinate or use outdated approaches
+3. **Guided workflows** — Skills and commands so CLaude can walk you through setting up Wasp's batteries-included features (auth, email, database, styling) and deploying
+4. **Full debugging visibility** — Start managed databases, dev servers, and connect browser console access so Claude has full development and debugging visibility across the entire stack
+
+The result: Claude actually understands Wasp instead of guessing.
 
 
-## 🔧 Commands
+## Quick Reference
 
-Commands are used to interact with the plugin. Commands are run by the user when they want to invoke a specific prompt/action:
+Slash Commands:
+`/wasp:init` - Initialize plugin for your project
+`/wasp:start-dev-server` - Start dev environment with full debugging visibility (db -> server -> browser console)
+`/wasp:expert-advice` - Get advice on improvements from a Wasp expert
+`/wasp:help` - Show this guide
 
-1. `/wasp:init`:
-  - Initialize the plugin for your project. 
-  - Copies Wasp knowledge to your project
-  - Links it in your `CLAUDE.md` file
-  - Run this once per project
-
-2. `/wasp:start-dev-server`:
-  - Start the Wasp development environment as a background task so Claude can have full insight into the Wasp app while developing/debugging.
-  - Uses the skill of the same name with a few explicit properties set.
-
-3. `/wasp:expert-advice [advice request]`:
-  - Get advice on app improvements and functionality from a Wasp expert
-  - Optionally provide arguments for more specific requests (e.g., `/wasp:expert-advice how can I improve account management?`)
-  - Explores your codebase, Wasp docs, and plugin features to suggest improvements with pros and cons
-
-3. `/wasp:help`:
-  - Displays this help guide
+Skills:
+`add-feature` - Add Wasp's built-in features (auth, email, database, styling)
+`deploying-app` - Guided deployment to Railway or Fly.io
 
 
-## 🤖 Skills
+## 💬 Example Prompts
 
-Skills are context-aware workflows Claude can invoke to help you accomplish specific Wasp tasks. Claude will automatically invoke the relevant skill based on the user's request.
-
-1. **configure-wasp**
-  - Interactive guided setup for adding or configuring Wasp framework features.
-  - *Usage:* Just ask Claude something like "help me set up authentication" or "configure my database"
-
-2. **start-dev-server**
-  - Start the Wasp development environment, database, and migrations.
-  - *Usage:* Ask Claude "start the dev server", "run migrations", or "help me start development"
-
-3. **deploying-app**
-  - Guided deployment workflow via Wasp's CLI for deploying database, server, and client apps to Railway or Fly.io.
-  - *Usage:* Ask Claude "help me deploy my app" or "deploy to Railway"
+- *"Add Google authentication to my app"*
+- *"Help me add ShadCN UI to my app"*
+- *"Migrate the database from SQLite to PostgreSQL and start it for me"*
+- *"Set up email sending with SendGrid"*
+- *"Solve the errors in the browser using the Chrome DevTools MCP server"*
+- *"Why isn't my recurring job working?"*
+- *"Deploy my app to Railway"*
 
 
 ## 📖 Documentation Access
 
-The plugin ensures Claude always references the correct Wasp documentation for your project:
+The plugin ensures Claude detects your project's Wasp version and references the correct documentation:
 
-- Latest docs: `https://wasp.sh/llms.txt` - Full Wasp documentation in LLM-friendly format
-- Versioned docs: `https://wasp.sh/llms-{version}.txt` - Documentation for a specific Wasp version (e.g., `llms-0.15.txt`)
-
-Claude automatically detects your project's Wasp version and fetches the appropriate documentation when needed.
+- **Latest:** `https://wasp.sh/llms.txt`
+- **Versioned:** `https://wasp.sh/llms-{version}.txt` (e.g., `llms-0.15.txt`)
 
 
-## 🤝 Contribute 
+## 🫂 Community & Contribute
 
-Want to help make this plugin better?
-Submit issues, feedback, or PRs to the [Wasp Claude Code Plugins](https://github.com/wasp-lang/claude-plugins) repository.
-
-
-## 🫂 Community 
-
-Join the [Wasp Discord](https://discord.gg/rzdnErX) to get extra help or talk about anything web development related.
+Join the [Wasp Discord](https://discord.gg/rzdnErX) for help and web dev discussion.
+Submit issues, feedback, or PRs: [Wasp Claude Code Plugins](https://github.com/wasp-lang/claude-plugins)

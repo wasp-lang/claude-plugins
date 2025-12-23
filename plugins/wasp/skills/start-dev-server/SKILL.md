@@ -1,6 +1,6 @@
 ---
 name: start-dev-server
-description: start the Wasp dev server, handle database setup, and run migrations. Use when the user wants to start development, run the app locally, or needs help with database migrations.
+description: Start the Wasp dev server and set up full debugging visibility. This includes running the server (with access to logs), and connecting browser console access so Claude can see client-side errors. Essential for any development or debugging work.
 ---
 
 # start-dev-server
@@ -8,67 +8,65 @@ description: start the Wasp dev server, handle database setup, and run migration
 ## Before Starting
 
 1. Use the Glob tool to check for the presence of the `main.wasp` or `main.wasp.ts` file and cd into the project directory if found.
-2. Detect database type → [detect-database.md](./detect-database.md)
-3. Ask the user if they want Claude to start the dev server(s ) as a background task in the current session, or on their own in a separate terminal:
+2. Ask the user if they want Claude to start the dev server(s) as a background task in the current session, or on their own in a separate terminal:
   - Starting as a background task (Claude)
-    - Pros: Claude has more autonomy, can respond directly to dev server logs (warnings, errors) and can run Wasp CLI commands for you.
+    - Pros: Claude has more autonomy, can respond directly to dev server logs (warnings, errors).
     - Cons: Certain actions can be slower, and the user has less direct control. Server logs are only visibile to the user from within the `background tasks` tab.
   - Starting externally (User)
     - Pros: The user has more direct control over app development and the Wasp CLI commands. Can be advantageous for more advanced users.
     - Cons: Debugging and feature discovery can be slower, as Claude doesn't have direct access to dev server logs (warnings, errors) or Wasp CLI commands.
+3. Depending on the user's choice, follow the workflow below and run the commands for the user as background tasks, or guide them through running this workflow manually in a separate terminal.
 
 ## Workflow
 
-### Step 1: Database Setup (PostgreSQL only)
+### Step 1: Ensure the Development Database is Running
 
-**PostgreSQL:** Start the managed database container as a background task:
+Grep the `.env.server` file for `DATABASE_URL`. If no line starts with `DATABASE_URL`, continue following this step.
+If the user does have their own DATABASE_URL env var set, skip to [Step 2](#step-2-start-dev-server).
+
+Check the `schema.prisma` file in the project root for the `datasource` block to see which database is being used.
+
+#### PostgreSQL
+Start the managed database container as a background task:
 ```bash
 wasp start db
 ```
-**Run this as a background task in the current claude code session.**
+
+**Docker needs to be installed and running** for the managed Postgres database container (`wasp start db`) to work.
+
+Run this as a background task in the current claude code session.
 Wait 5-15 seconds for the database to be ready.
 
-**SQLite:** Skip this step. Do NOT run `wasp start db`.
+#### SQLite
+**Skip this step:** Do NOT run `wasp start db` because SQLite is a simple file-based database that does not need a database container.
 
-### Step 2: Stop Existing Dev Server
 
-Before running migrations, stop any running Wasp dev server to avoid database locks and stale types.
-
-**If started as background task in current session:** Use `KillShell` tool with the task ID.
-
-**If started externally:** Instruct the user to stop the dev server in the external terminal.
-
-### Step 3: Run Pending Migrations
-
-Check for pending migrations by reading the `migrations/` directory and the `schema.prisma` file and comparing.
-
-Prisma requires an interactive terminal. There are two solutions:
-
-#### Solution 1: Use `script` to provide a pseudo-TTY:
-
-```bash
-script -q /dev/null bash -c 'wasp db migrate-dev --name <migration-name>'
-```
-
-#### Solution 2: Have the user run in a separate terminal:
-```bash
-wasp db migrate-dev --name migration-name
-```
-
-ALWAYS use `--name migration-name`. If the user doesn't specify one, suggest a name based on schema changes.
-
-### Step 4: Start Dev Server
+### Step 2: Start Dev Server
 
 Run as a background task:
 ```bash
 wasp start
 ```
 
-### Step 5: Verify
+Listen to the output from `wasp start` and if it gives a prisma **db migration warning**, follow the [running-db-migrations.md](./running-db-migrations.md) reference.
 
-1. Confirm client (`localhost:3000`) and server (`localhost:3001`) are running
-2. Confirm there are no client app issues in the browser console, by asking the user (via the AskUserQuestion tool) to choose which tool they'd prefer so that Claude has full insight into the Wasp app while developing/debugging:
-  - the `mcp__plugin_wasp_chrome-devtools`
-  - or Claude Code's built-in Chrome browser function (check if its connected with `/chrome` command)
-  - the user can check manually
-  - other
+
+### Step 3: Verify Server is Running
+
+Confirm client (`localhost:3000`) and server (`localhost:3001`) are running by checking the background task output.
+
+**If started as background task in current session:** Listen to the output for development and debugging information.
+**If started externally:** Instruct the user to check the output of the external terminal and share its output with you.
+
+### Step 4: Connect Browser Console Access (Important!)
+
+**This step is critical for effective development and debugging.** Without browser console access, Claude cannot see client-side errors, warnings, or React issues that occur in the browser.
+
+Ask the user (via the AskUserQuestion tool) which method they'd like to use for giving Claude visibility into the browser console:
+
+| Option | Description |
+|--------|-------------|
+| **Chrome DevTools MCP (recommended)** | Use the `mcp__plugin_wasp_chrome-devtools` tool (bundled with the plugin) |
+| **Built-in Chrome** | Use Claude Code's built-in browser connection (check status with `/chrome` command) |
+| **Manual** | User will manually copy/paste console output when needed |
+| **Other** | User has another preference |
