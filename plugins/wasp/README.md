@@ -35,8 +35,8 @@ After installing, in an active session, run:
 ```
 - This will add Wasp knowledge to your project's CLAUDE.md file.
 
-```bash
-/wasp:start-dev-server
+```
+Run the 'start-dev-server' skill.
 ```
 - This will start the Wasp development environment as a background task so Claude can have full insight into the Wasp app while developing/debugging.
 

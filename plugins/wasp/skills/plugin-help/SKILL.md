@@ -23,7 +23,7 @@ This plugin makes Claude Code work better with Wasp by:
 
 1. **Using the right documentation** — Automatically fetches the correct Wasp docs for your project's version
 2. **Avoiding common mistakes** — Provides Wasp-specific tips, patterns, and best practices so Claude doesn't hallucinate or use outdated approaches
-3. **Guided workflows** — Skills and commands so CLaude can walk you through setting up Wasp's batteries-included features (auth, email, database, styling) and deploying
+3. **Guided workflows** — Skills and commands so Claude can walk you through setting up Wasp's batteries-included features (auth, email, database, styling) and deploying
 4. **Full debugging visibility** — Start managed databases, dev servers, and connect browser console access so Claude has full development and debugging visibility across the entire stack
 
 The result: Claude actually understands Wasp instead of guessing.
@@ -33,14 +33,13 @@ The result: Claude actually understands Wasp instead of guessing.
 
 Slash Commands:
 `/wasp:init` - Initialize plugin for your project
-`/wasp:start-dev-server` - Start dev environment with full debugging visibility (db -> server -> browser console)
 `/wasp:expert-advice` - Get advice on improvements from a Wasp expert
 `/wasp:help` - Show this guide
 
 Skills:
 `add-feature` - Add Wasp's built-in features (auth, email, database, styling)
 `deploying-app` - Guided deployment to Railway or Fly.io
-
+`start-dev-server` - Start dev environment with full debugging visibility (db -> server -> browser console)
 
 ## 💬 Example Prompts
 

@@ -3,21 +3,16 @@ name: start-dev-server
 description: Start the Wasp dev server and set up full debugging visibility. This includes running the server (with access to logs), and connecting browser console access so Claude can see client-side errors. Essential for any development or debugging work.
 ---
 
-# start-dev-server
+## Step 0: Get User Preferences
 
-## Before Starting
-
-1. Use the Glob tool to check for the presence of the `main.wasp` or `main.wasp.ts` file and cd into the project directory if found.
-2. Ask the user if they want Claude to start the dev server(s) as a background task in the current session, or on their own in a separate terminal:
+- [ ] Ask the user if they want Claude to start the dev server(s) as a background task in the current session, or on their own in a separate terminal:
   - Starting as a background task (Claude)
     - Pros: Claude has more autonomy, can respond directly to dev server logs (warnings, errors).
     - Cons: Certain actions can be slower, and the user has less direct control. Server logs are only visibile to the user from within the `background tasks` tab.
   - Starting externally (User)
     - Pros: The user has more direct control over app development and the Wasp CLI commands. Can be advantageous for more advanced users.
     - Cons: Debugging and feature discovery can be slower, as Claude doesn't have direct access to dev server logs (warnings, errors) or Wasp CLI commands.
-3. Depending on the user's choice, follow the workflow below and run the commands for the user as background tasks, or guide them through running this workflow manually in a separate terminal.
-
-## Workflow
+- [ ] Depending on the user's choice, follow the steps below and run the commands for the user as background tasks, or guide them through running them manually in a separate terminal.
 
 ### Step 1: Ensure the Development Database is Running
 
