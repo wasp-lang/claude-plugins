@@ -4,7 +4,7 @@ Configure a database for your Wasp app.
 
 ## Prerequisites
 
-- Fetch the list of available databases from the [Wasp docs](https://wasp.sh/llms.txt)
+- Read the documentation map from `.claude/wasp/docs/llms.txt` and fetch the database setup guide from the raw GitHub URLs listed there
 
 ## Steps
 

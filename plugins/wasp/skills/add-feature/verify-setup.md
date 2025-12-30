@@ -4,7 +4,7 @@ Verify your Wasp app configuration compiles and runs correctly.
 
 ## Prerequisites
 
-Fetch the raw github doc file URL for the CLI reference from the [Wasp docs](https://wasp.sh/llms.txt)
+Read the documentation map from `.claude/wasp/docs/llms.txt` and fetch the CLI reference from the raw GitHub URLs listed there
 
 ## Steps
 

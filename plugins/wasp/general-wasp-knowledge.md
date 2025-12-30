@@ -16,7 +16,7 @@ Together, these tools allow Claude to see both backend (server logs, build outpu
 
 ### Development Workflow Checklist
 
-1. [ ] Fetch Wasp [documentation](https://wasp.sh/llms.txt) to ground your knowledge
+1. [ ] Read the Wasp documentation map from `.claude/wasp/docs/llms.txt` and fetch the relevant raw GitHub markdown files to ground your knowledge
 2. [ ] Check if the feature exists in the current codebase or starter template for reference patterns
 3. [ ] Identify which files need changes: wasp config file (`main.wasp` or `main.wasp.ts`), `schema.prisma`, `src/`
 4. [ ] Plan the order, preferring to work in vertical slices and starting from the bottom up, if necessary.
@@ -24,9 +24,9 @@ Together, these tools allow Claude to see both backend (server logs, build outpu
 
 ### Documentation
 
-Fetch and verify your knowledge against the current Wasp documentation before implementing Wasp features or answering Wasp questions as your Wasp knowledge may be outdated:
-- https://wasp.sh/llms.txt (latest)
-- https://wasp.sh/llms-{version}.txt (versioned)
+Read and verify your knowledge against the current Wasp documentation before implementing Wasp features or answering Wasp questions as your Wasp knowledge may be outdated:
+- Read `.claude/wasp/docs/llms.txt` - a documentation map with raw GitHub markdown URLs (version-matched to your project)
+- Fetch the relevant raw GitHub markdown files listed in the map for the specific topic you need
 
 ### Development Server
 

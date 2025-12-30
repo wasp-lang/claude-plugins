@@ -6,11 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/block-wasp-html-docs.js\""
-          },
-          {
-            "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/wasp-llms-version-redirect.js\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/wasp-docs-redirect.js\""
           }
         ]
       }
@@ -20,7 +16,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/wasp-version-cache.js\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/fetch-llms-txt.js\""
           },
           {
             "type": "command",

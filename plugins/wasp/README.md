@@ -4,7 +4,7 @@ A Claude Code plugin that provides an optimal experience developing full-stack w
 
 ## Features
 
-- **Wasp documentation**: Ensures that Claude always accesses the right version of the Wasp framework documentation (in sync with your current Wasp project) at the right times, with additional enhancements (coming in the future: caching, additional knowledge from Wasp Github and Discord, ...).
+- **Wasp documentation**: Automatically downloads the correct version of the Wasp documentation map (`llms.txt`) to `.claude/wasp/docs/llms.txt` on session start. This file contains links to raw GitHub markdown files that Claude fetches as needed.
 - **Adds Wasp Knowledge**: Import Wasp best practices and conventions to your project's CLAUDE.md
 - **Configures Wasp**: Easily add Wasp framework features like authentication, database, email, styling (tailwind, shadcn), and other integrations
 - **Deployment Guidance**: Claude Code will guide you through deploying your Wasp app to Railway or Fly.io via the Wasp CLI
@@ -53,7 +53,8 @@ Check out the individual [commands](./commands) and [skills](./skills) to learn 
 ## Background Hooks
 
 The plugin includes background hooks that:
-- Automatically redirect to LLM-friendly Wasp docs (`llms.txt`) instead of HTML pages
+- Automatically download the version-matched Wasp documentation map (`llms.txt`) to `.claude/wasp/docs/` on session start
+- Redirect web fetches to the local `llms.txt` map instead of HTML pages (Claude then fetches the raw GitHub markdown URLs from the map)
 - Detect your project's Wasp version for versioned documentation
 - Check plugin initialization status on session start
 
