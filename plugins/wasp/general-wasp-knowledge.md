@@ -4,9 +4,9 @@ This project uses TypeScript and Wasp, a batteries-included framework for buildi
 
 ## Session Setup
 
-**At the start of any Wasp development session, proactively suggest the user set up these two tools for the best development experience:**
+**At the start of any Wasp development session, proactively suggest the user use these two tools for the best development experience:**
 
-1. **Start the dev server** - Run `/wasp:start-dev-server` to start the Wasp development servers as background tasks. This gives Claude direct access to server logs, build errors, and the ability to run Wasp CLI commands.
+1. **Start the dev server** - Run the 'start-dev-server' skill to start the Wasp development servers as background tasks. This gives Claude direct access to server logs, build errors, and the ability to run Wasp CLI commands.
 
 2. **Enable Chrome DevTools** - Use the `mcp__plugin_wasp_chrome-devtools` MCP server to give Claude visibility into browser console logs, network requests, and runtime errors. This provides end-to-end insight for debugging and feature development.
 
@@ -24,9 +24,8 @@ Together, these tools allow Claude to see both backend (server logs, build outpu
 
 ### Documentation
 
-Fetch and verify your knowledge against the current Wasp documentation before implementing Wasp features or answering Wasp questions as your Wasp knowledge may be outdated:
-- https://wasp.sh/llms.txt (latest)
-- https://wasp.sh/llms-{version}.txt (versioned)
+Always fetch and verify your knowledge against the current Wasp documentation before implementing Wasp features or answering Wasp questions as your Wasp knowledge may be outdated:
+- https://wasp.sh/llms.txt
 
 ### Development Server
 
@@ -38,7 +37,7 @@ If not running, invoke the `start-dev-server` skill to start the server as a bac
 
 ### Schema Changes
 
-Changes to `schema.prisma` are not applied until `wasp db migrate-dev --name <descriptive-name>` runs. Continue coding freely and run migrations when ready to test.
+Changes to `schema.prisma` are not applied until `wasp db migrate-dev --name <descriptive-name>` runs. Continue coding freely and tell the user to run migrations when ready to test.
 
 **Track pending migrations:** The dev server warns about this, but users may miss it in background tasks. Remind them before testing/viewing the app, and offer to run migrations:
 - [ ] stop server
