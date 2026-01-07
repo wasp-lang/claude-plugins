@@ -2,22 +2,19 @@
 
 This project uses Wasp, a batteries-included framework for building full-stack web apps with React, Node.js, and Prisma.
 
-## Development Workflow
+## Development Rules
+
+ALWAYS perform the following steps when working on this Wasp project:
 
 ### 1. Documentation
 
-Always fetch and verify your knowledge against the current Wasp documentation before implementing features, debugging, or answering questions as your Wasp knowledge may be outdated:
-- https://wasp.sh/llms.txt
+Always fetch the relevant [Wasp documentation](https://wasp.sh/llms.txt) to ground your knowledge before answering any questions or doing any development work.
 
 ### 2. Session Setup & Full Debugging Visibility
 
-Before starting any development task on this Wasp project (coding, debugging, adding features), do the following to give Claude the best development experience with full debugging visibility:
-
-1. **Start the dev server** - Run the plugin's 'start-dev-server' skill and select the option to start the Wasp development servers as background tasks to give Claude direct access to server logs and build errors.
-
-2. **Enable Chrome DevTools** - Use the plugin's installed `mcp__plugin_wasp_chrome-devtools` MCP server to give Claude visibility into browser console logs, UI functionality, network requests, and runtime errors.
-
-Together, these tools allow Claude to evaluate and respond to changes and issues from the backend and frontend in real-time, dramatically improving its development capabilities.
+Give Claude full debugging visibility by running the `start-dev-server` skill with the recommended options:
+  - Start the Wasp development server as a background task to give Claude direct access to server logs and build errors.
+  - Select the Chrome DevTools MCP server to give Claude visibility into browser console logs, UI functionality, network requests, and runtime errors.
 
 ## Project Reference
 
@@ -79,8 +76,8 @@ See the **Advanced Features** section in the Wasp docs for more details.
 
 Always ground your knowledge against the Wasp [Documentation](#1-documentation).
 
-If you don't full debugging visibility as described in the [Session Setup & Full Debugging Visibility](#session-setup--full-debugging-visibility) section, do the following:
-  1. Insist that the user start a Wasp development session as described in the [Session Setup & Full Debugging Visibility](#session-setup--full-debugging-visibility) section.
+If you don't have full debugging visibility as described in the [Session Setup & Full Debugging Visibility](#2-session-setup--full-debugging-visibility) section, do the following:
+  1. Insist that the user start a Wasp development session as described in the [Session Setup & Full Debugging Visibility](#2-session-setup--full-debugging-visibility) section.
   2. If the user refuses, ask them to share the output of the `wasp start` command and the browser console logs.
 
 ### Common Mistakes
