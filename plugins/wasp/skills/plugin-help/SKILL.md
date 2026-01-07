@@ -54,10 +54,10 @@ Skills:
 
 ## 📖 Documentation Access
 
-The plugin ensures Claude detects your project's Wasp version and references the correct documentation:
+The plugin automatically downloads the correct Wasp documentation map for your project's version:
 
-- **Latest:** `https://wasp.sh/llms.txt`
-- **Versioned:** `https://wasp.sh/llms-{version}.txt` (e.g., `llms-0.15.txt`)
+- **Documentation map:** `.claude/wasp/docs/llms.txt` (downloaded on session start, version-matched to your project)
+- This file contains links to raw GitHub markdown files that Claude fetches as needed
 
 
 ## 🫂 Community & Contribute
