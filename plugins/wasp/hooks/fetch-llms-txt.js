@@ -12,9 +12,11 @@ const styles = {
   cyan: '\x1b[36m',
 };
 
-const LLMS_TXT_URL = 'https://wasp.sh/llms.txt';
-const LLMS_VERSIONED_URL_TEMPLATE = 'https://wasp.sh/llms-{version}.txt';
+// const WASP_URL = 'https://wasp.sh/';
+const WASP_URL = 'https://versioned-docs-map-llms-txt.wasp-docs-on-main.pages.dev/'; // test url for versioned docs map
+const LLMS_TXT_URL = `${WASP_URL}llms.txt`;
 const VERSIONS_URL = 'https://raw.githubusercontent.com/wasp-lang/wasp/refs/heads/release/web/versions.json';
+const CACHE_TTL_HOURS = 24;
 const INSTALL_INSTRUCTIONS = `To install Wasp CLI:
   - macOS/Linux: curl -sSL https://get.wasp.sh/installer.sh | sh
   - Windows: See https://wasp.sh/docs (requires WSL)`;
@@ -27,6 +29,37 @@ function isWaspProjectRoot() {
 
 function getLocalLlmsTxtDocsPath() {
   return path.join(process.cwd(), '.claude', 'wasp', 'docs', 'llms.txt');
+}
+
+function getCacheMetadataPath() {
+  return path.join(process.cwd(), '.claude', 'wasp', 'docs', 'cache-meta.json');
+}
+
+function majorMinorMatch(v1, v2) {
+  if (!v1 || !v2) return false;
+  const [m1, n1] = v1.split('.').map(Number);
+  const [m2, n2] = v2.split('.').map(Number);
+  return m1 === m2 && n1 === n2;
+}
+
+function buildVersionedUrl(version) {
+  const [major, minor] = version.split('.');
+  return `${WASP_URL}llms-${major}.${minor}.0.txt`;
+}
+
+function isCacheValid(localPath, metaPath, installedVersion) {
+  if (!fs.existsSync(localPath) || !fs.existsSync(metaPath)) {
+    return false;
+  }
+
+  try {
+    const meta = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
+    const ageHours = (Date.now() - new Date(meta.fetchedAt).getTime()) / (1000 * 60 * 60);
+
+    return meta.waspVersion === installedVersion && ageHours < CACHE_TTL_HOURS;
+  } catch {
+    return false;
+  }
 }
 
 function getWaspCliVersion() {
@@ -54,56 +87,6 @@ async function fetchWaspVersionsFromGitHub() {
   }
 }
 
-function findBestMatchingDocsVersion(installedVersion, availableVersions) {
-  if (!installedVersion || !availableVersions || availableVersions.length === 0) {
-    return null;
-  }
-
-  if (availableVersions.includes(installedVersion)) {
-    return installedVersion;
-  }
-
-  const [installedMajor, installedMinor] = installedVersion.split('.').map(Number);
-
-  let bestMatch = null;
-  for (const availableVersion of availableVersions) {
-    const [vMajor, vMinor] = availableVersion.split('.').map(Number);
-
-    if (vMajor === installedMajor && vMinor === installedMinor) {
-      bestMatch = availableVersion;
-      break;
-    }
-
-    if (vMajor < installedMajor || (vMajor === installedMajor && vMinor <= installedMinor)) {
-      if (!bestMatch) {
-        bestMatch = availableVersion;
-      }
-      break;
-    }
-  }
-
-  return bestMatch || availableVersions[availableVersions.length - 1];
-}
-
-function buildVersionedLlmsTxtUrl(installedVersion, availableVersions) {
-  if (!availableVersions || availableVersions.length === 0) {
-    return null;
-  }
-
-  const latestVersion = availableVersions[0];
-  const matchedVersion = findBestMatchingDocsVersion(installedVersion, availableVersions);
-
-  if (!matchedVersion) {
-    return null;
-  }
-
-  if (matchedVersion === latestVersion) {
-    return LLMS_TXT_URL;
-  }
-
-  return LLMS_VERSIONED_URL_TEMPLATE.replace('{version}', matchedVersion);
-}
-
 async function downloadLlmsTxt(url) {
   try {
     const controller = new AbortController();
@@ -127,44 +110,57 @@ async function fetchAndCacheLlmsTxt() {
     };
   }
 
+  const localPath = getLocalLlmsTxtDocsPath();
+  const metaPath = getCacheMetadataPath();
   const installedVersion = getWaspCliVersion();
-  const availableVersions = await fetchWaspVersionsFromGitHub();
-  const url = buildVersionedLlmsTxtUrl(installedVersion, availableVersions) || LLMS_TXT_URL;
 
-  const content = await downloadLlmsTxt(url);
-  if (!content) {
-    return {
-      success: false,
-      error: `Failed to download llms.txt from ${url}`,
-    };
+  if (isCacheValid(localPath, metaPath, installedVersion)) {
+    return { success: true, localPath, version: installedVersion, cached: true };
   }
 
-  const localPath = getLocalLlmsTxtDocsPath();
-  const docsDir = path.dirname(localPath);
+  const versions = await fetchWaspVersionsFromGitHub();
+  const latestVersion = versions?.[0];
 
+  // Determine URL: if installed version matches latest, use main llms.txt
+  // Otherwise, use versioned URL (e.g., llms-0.19.0.txt)
+  let url = LLMS_TXT_URL;
+  if (installedVersion && latestVersion && !majorMinorMatch(installedVersion, latestVersion)) {
+    url = buildVersionedUrl(installedVersion);
+  }
+
+  let content = await downloadLlmsTxt(url);
+  let sourceUrl = url;
+
+  if (!content && url !== LLMS_TXT_URL) {
+    content = await downloadLlmsTxt(LLMS_TXT_URL);
+    sourceUrl = LLMS_TXT_URL;
+  }
+
+  if (!content) {
+    // All fetches failed, use stale cache if available
+    if (fs.existsSync(localPath)) {
+      return { success: true, localPath, version: installedVersion, stale: true };
+    }
+    return { success: false, error: 'Failed to download llms.txt' };
+  }
+
+  const docsDir = path.dirname(localPath);
   try {
     fs.mkdirSync(docsDir, { recursive: true });
-  } catch (err) {
-    return {
-      success: false,
-      error: `Failed to create directory ${docsDir}: ${err.message}`,
-    };
-  }
-
-  try {
     fs.writeFileSync(localPath, content);
+    fs.writeFileSync(metaPath, JSON.stringify({
+      waspVersion: installedVersion,
+      sourceUrl,
+      fetchedAt: new Date().toISOString(),
+    }));
   } catch (err) {
     return {
       success: false,
-      error: `Failed to write llms.txt to ${localPath}: ${err.message}`,
+      error: `Failed to write cache: ${err.message}`,
     };
   }
 
-  return {
-    success: true,
-    localPath,
-    version: installedVersion,
-  };
+  return { success: true, localPath, version: installedVersion, cached: false };
 }
 
 /**
@@ -183,17 +179,16 @@ async function runSessionStart() {
     process.exit(0);
   }
 
-  const installedVersion = getWaspCliVersion();
   const cacheResult = await fetchAndCacheLlmsTxt();
 
   const result = {
-    reason: installedVersion ? 'Wasp version detected' : 'Wasp CLI not installed',
+    reason: cacheResult.version ? `Wasp version ${cacheResult.version} detected` : 'Wasp CLI not installed',
     suppressOutput: true,
     hookSpecificOutput: {
       hookEventName: 'SessionStart',
-      additionalContext: buildAdditionalContext(installedVersion, cacheResult),
+      additionalContext: buildAdditionalContext(cacheResult),
     },
-    ...(!installedVersion && {
+    ...(!cacheResult.version && {
       systemMessage: `\n\n${styles.yellow}Warning: Wasp not detected.${styles.reset}\n\nTo install: ${styles.cyan}curl -sSL https://get.wasp.sh/installer.sh | sh${styles.reset}`,
     }),
   };
@@ -202,15 +197,25 @@ async function runSessionStart() {
   process.exit(0);
 }
 
-function buildAdditionalContext(installedVersion, cacheResult) {
-  const docsStatus = cacheResult.success
-    ? `Documentation map downloaded to: ${cacheResult.localPath}\nThis file contains links to raw GitHub markdown files - fetch them as needed.`
-    : `Failed to download llms.txt: ${cacheResult.error}`;
+function buildAdditionalContext(cacheResult) {
+  let docsStatus;
+  if (cacheResult.success) {
+    if (cacheResult.cached) {
+      docsStatus = `Using cached documentation map: ${cacheResult.localPath}`;
+    } else if (cacheResult.stale) {
+      docsStatus = `Using stale cache (download failed): ${cacheResult.localPath}`;
+    } else {
+      docsStatus = `Documentation map downloaded to: ${cacheResult.localPath}`;
+    }
+    docsStatus += '\nThis file contains links to raw GitHub markdown files - fetch them as needed.';
+  } else {
+    docsStatus = `Failed to get llms.txt: ${cacheResult.error}`;
+  }
 
-  if (!installedVersion) {
+  if (!cacheResult.version) {
     return `Wasp CLI is not installed. ${docsStatus}\n\n${INSTALL_INSTRUCTIONS}`;
   }
-  return `Wasp v${installedVersion} detected. ${docsStatus}`;
+  return `Wasp v${cacheResult.version} detected. ${docsStatus}`;
 }
 
 if (require.main === module) {
