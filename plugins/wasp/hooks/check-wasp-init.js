@@ -1,23 +1,37 @@
 #!/usr/bin/env node
+// TODO: Add support for updating rules in existing installations
 const fs = require('fs');
 const path = require('path');
 
 const cwd = process.cwd();
 const knowledgeDirectory = path.join(cwd, '.claude', 'knowledge');
 const optOutFilePath = path.join(knowledgeDirectory, '.wasp-init-opt-out');
-const claudeMdPath = path.join(cwd, 'CLAUDE.md');
-const waspKnowledgeFileName = 'general-wasp-knowledge.md';
+const waspRulesDirectory = path.join(cwd, '.claude', 'rules', 'wasp');
+const requiredRuleFiles = [
+  'wasp-project.md',
+  'wasp-config.md',
+  'typescript-imports.md',
+  'prisma-schema.md',
+];
 
 function isWaspProjectRoot() {
   return fs.existsSync(path.join(cwd, '.wasproot'));
+}
+
+function checkRequiredRuleFiles() {
+  if (!fs.existsSync(waspRulesDirectory)) {
+    return false;
+  }
+  return requiredRuleFiles.every((file) =>
+    fs.existsSync(path.join(waspRulesDirectory, file))
+  );
 }
 
 if (!isWaspProjectRoot() || fs.existsSync(optOutFilePath)) {
   process.exit(0);
 }
 
-const isInitialized = fs.existsSync(claudeMdPath) &&
-  fs.readFileSync(claudeMdPath, 'utf8').includes(waspKnowledgeFileName);
+const isInitialized = checkRequiredRuleFiles();
 
 if (!isInitialized) {
   const styles = {
