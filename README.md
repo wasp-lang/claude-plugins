@@ -10,21 +10,12 @@ The main plugin that provides an optimal experience developing full-stack web ap
 
 -> [Wasp Plugin for Claude Code](./plugins/wasp)
 
-## Adding the Wasp Claude Code Plugins Marketplace
+## Installing the Wasp Claude Code Plugins Marketplace
 
-To automatically install this marketplace for all team members, add this to your project's `.claude/settings.json`:
+To install this marketplace and browse the available Wasp plugins, run the following command:
 
-```json
-{
-  "extraKnownMarketplaces": {
-    "wasp-plugins": {
-      "source": {
-        "source": "github",
-        "repo": "wasp-lang/claude-plugins"
-      }
-    }
-  }
-}
+```bash
+claude plugin marketplace add wasp-lang/claude-plugins
 ```
 
 ## Contributing
