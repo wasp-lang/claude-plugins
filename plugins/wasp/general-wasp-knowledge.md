@@ -10,7 +10,10 @@ Run the plugin's `start-dev-server` skill with the recommended options to give C
 
 ### Documentation
 
-Fetch and verify your knowledge against the current Wasp documentation before implementing Wasp features or answering Wasp questions as your Wasp knowledge may be outdated.
+Always fetch and verify your knowledge against the current Wasp documentation before taking on tasks, answering questions, or doing any development work in a Wasp project as your Wasp knowledge may be outdated:
+1. Run `wasp version` to get the current Wasp CLI version.
+2. Find and fetch the correct version of the Wasp documentation maps from the [LLMs.txt index](https://wasp.sh/llms.txt). The map contains raw markdown file GitHub URLs of all documentation sections.
+3. Fetch the guides relevant to the current task or query from those raw.githubusercontent.com URLs directly - do NOT use HTML page URLs.
 
 ### Schema Changes
 
@@ -96,7 +99,7 @@ See the **TypeScript Config** section in the Wasp docs for more details.
 
 ### Debugging
 
-Always ground your knowledge against the Wasp documentation.
+Always ground your knowledge against the [Wasp documentation](#documentation).
 
 If you don't have full debugging visibility as described in the [Start a Wasp Development Session with Full Debugging Visibility](#start-a-wasp-development-session-with-full-debugging-visibility) section, do the following:
   1. Insist that the user run the `start-dev-server` skill as described in the [Start a Wasp Development Session with Full Debugging Visibility](#start-a-wasp-development-session-with-full-debugging-visibility) section.
