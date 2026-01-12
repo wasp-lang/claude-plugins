@@ -50,13 +50,6 @@ Finally, to access more information about the plugin and its features, run:
 
 Check out the individual [commands](./commands) and [skills](./skills) to learn more about what they are and what they do.
 
-## Background Hooks
-
-The plugin includes background hooks that:
-- Automatically redirect to LLM-friendly Wasp docs (`llms.txt`) instead of HTML pages
-- Detect your project's Wasp version for versioned documentation
-- Check plugin initialization status on session start
-
 ## Recommended Permissions
 
 For the best experience, add these permissions to your project or user settings:

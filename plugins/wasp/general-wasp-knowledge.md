@@ -1,48 +1,25 @@
 # Wasp App
 
-This project uses TypeScript and Wasp, a batteries-included framework for building full-stack web apps with React, Node.js, and Prisma.
+This project uses Wasp, a batteries-included framework for building full-stack web apps with React, Node.js, and Prisma.
 
-## Session Setup
+## Start a Wasp Development Session with Full Debugging Visibility
 
-**At the start of any Wasp development session, proactively suggest the user use these two tools for the best development experience:**
-
-1. **Start the dev server** - Run the 'start-dev-server' skill to start the Wasp development servers as background tasks. This gives Claude direct access to server logs, build errors, and the ability to run Wasp CLI commands.
-
-2. **Enable Chrome DevTools** - Use the `mcp__plugin_wasp_chrome-devtools` MCP server to give Claude visibility into browser console logs, network requests, and runtime errors. This provides end-to-end insight for debugging and feature development.
-
-Together, these tools allow Claude to see both backend (server logs, build output) and frontend (console errors, network issues) in real-time, dramatically improving debugging and development speed.
-
-## Workflows
-
-### Development Workflow Checklist
-
-1. [ ] Fetch Wasp [documentation](https://wasp.sh/llms.txt) to ground your knowledge
-2. [ ] Check if the feature exists in the current codebase or starter template for reference patterns
-3. [ ] Identify which files need changes: wasp config file (`main.wasp` or `main.wasp.ts`), `schema.prisma`, `src/`
-4. [ ] Plan the order, preferring to work in vertical slices and starting from the bottom up, if necessary.
-5. [ ] Invoke the `start-dev-server` skill to verify that changes were successfully implemented 
+Run the plugin's `start-dev-server` skill with the recommended options to give Claude full debugging visibility:
+  - Start the Wasp development server as a background task to give Claude direct access to server logs and build errors.
+  - Select the Chrome DevTools MCP server to give Claude visibility into browser console logs, UI functionality, network requests, and runtime errors.
 
 ### Documentation
 
-Always fetch and verify your knowledge against the current Wasp documentation before implementing Wasp features or answering Wasp questions as your Wasp knowledge may be outdated:
-- https://wasp.sh/llms.txt
-
-### Development Server
-
-Before starting any development task on this Wasp project (coding, debugging, adding features), check if the development servers are running:
-- Check for active background tasks (use `/tasks` command)
-- Or check if ports 3000 (client) and 3001 (server) are in use
-
-If not running, invoke the `start-dev-server` skill to start the server as a background task or externally.
+Always fetch and verify your knowledge against the current Wasp documentation before taking on tasks, answering questions, or doing any development work in a Wasp project as your Wasp knowledge may be outdated:
+1. Run `wasp version` to get the current Wasp CLI version.
+2. Find and fetch the correct version of the Wasp documentation maps from the [LLMs.txt index](https://wasp.sh/llms.txt). The map contains raw markdown file GitHub URLs of all documentation sections.
+3. Fetch the guides relevant to the current task or query from those raw.githubusercontent.com URLs directly - do NOT use HTML page URLs.
 
 ### Schema Changes
 
 Changes to `schema.prisma` are not applied until `wasp db migrate-dev --name <descriptive-name>` runs. Continue coding freely and tell the user to run migrations when ready to test.
 
-**Track pending migrations:** The dev server warns about this, but users may miss it in background tasks. Remind them before testing/viewing the app, and offer to run migrations:
-- [ ] stop server
-- [ ] migrate
-- [ ] restart
+**Track pending migrations:** The dev server warns about this, but users may miss it if Wasp is running as a background task. Remind them of this before testing/viewing the app, and offer to run migrations for them.
 
 ## Project Reference
 
@@ -122,14 +99,11 @@ See the **TypeScript Config** section in the Wasp docs for more details.
 
 ### Debugging
 
-1. check the `wasp start` output for logs and errors from the:
-  a. API server/backend
-  b. client dev server (client building). 
-2. Also check the browser for client runtime logs and errors that are not printed by the `wasp start` command. The user can choose which tool they'd prefer via the AskUserQuestion tool and run it for the user:
-  - the `mcp__plugin_wasp_chrome-devtools` MCP server that comes installed with the plugin
-  - Claude Code's built-in Chrome browser function
-  - they can check manually
-  - other
+Always ground your knowledge against the [Wasp documentation](#documentation).
+
+If you don't have full debugging visibility as described in the [Start a Wasp Development Session with Full Debugging Visibility](#start-a-wasp-development-session-with-full-debugging-visibility) section, do the following:
+  1. Insist that the user run the `start-dev-server` skill as described in the [Start a Wasp Development Session with Full Debugging Visibility](#start-a-wasp-development-session-with-full-debugging-visibility) section.
+  2. If the user refuses, ask them to share the output of the `wasp start` command and the browser console logs.
 
 ### Common Mistakes
 
