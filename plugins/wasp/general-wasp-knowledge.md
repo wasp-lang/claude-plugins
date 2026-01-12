@@ -2,7 +2,9 @@
 
 This project uses Wasp, a batteries-included framework for building full-stack web apps with React, Node.js, and Prisma.
 
-## Start a Wasp Development Session with Full Debugging Visibility
+## Development Guidelines
+
+### Start a Wasp Development Session with Full Debugging Visibility
 
 Run the plugin's `start-dev-server` skill with the recommended options to give Claude full debugging visibility:
   - Start the Wasp development server as a background task to give Claude direct access to server logs and build errors.
