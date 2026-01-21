@@ -58,12 +58,11 @@ For the best experience, add these permissions to your project or user settings:
 {
   "permissions": {
     "allow": [
-      "Bash(wasp start)",
-      "Bash(wasp db:*)",
+      "Bash(wasp:*)",
+      "Skill(wasp:*)",
       "WebFetch(domain:wasp.sh)",
       "WebFetch(domain:raw.githubusercontent.com)",
-      "Skill(wasp:plugin-help)",
-      "Skill(wasp:start-dev-server)"
+      "mcp__plugin_wasp_chrome-devtools__*"
     ]
   }
 }

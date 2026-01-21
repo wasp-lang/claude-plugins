@@ -4,7 +4,7 @@ Add and configure authentication methods for your Wasp app.
 
 ## Prerequisites
 
-- Fetch the list of available authentication methods from the [Wasp docs](https://wasp.sh/llms.txt)
+- Fetch the list of available authentication methods from the Wasp docs
 
 ## Steps
 
@@ -18,7 +18,7 @@ Add and configure authentication methods for your Wasp app.
    - If no auth methods are selected, skip to completion
 
 4. For each auth method selected:
-   - Fetch the raw GitHub doc URL for that auth method from the [Wasp docs](https://wasp.sh/llms.txt)
+   - Fetch the raw GitHub doc URL for that auth method from the Wasp docs
    - Add the provider to the wasp config file's auth methods section according to the docs
    - If applicable, inform user they'll need to set env vars
 

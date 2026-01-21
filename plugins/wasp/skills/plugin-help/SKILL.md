@@ -54,11 +54,7 @@ Skills:
 
 ## 📖 Documentation Access
 
-The plugin ensures Claude detects your project's Wasp version and references the correct documentation:
-
-- **Latest:** `https://wasp.sh/llms.txt`
-- **Versioned:** `https://wasp.sh/llms-{version}.txt` (e.g., `llms-0.15.txt`)
-
+The plugin ensures Claude detects your project's Wasp version and references the correct, LLM-friendly documentation.
 
 ## 🫂 Community & Contribute
 

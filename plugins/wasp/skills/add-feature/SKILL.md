@@ -22,7 +22,6 @@ Present these features to the user and let them choose ONE to configure:
 | **Email Provider** | Configure email sending (SendGrid, Mailgun, etc.) |
 | **Database** | Set up your database (PostgreSQL, SQLite, etc.) |
 | **Styling (CSS, UI)** | Add Tailwind CSS or ShadCN UI (on top of Tailwind CSS) |
-| **Verify Setup** | Test that your app compiles and runs correctly |
 
 ## Feature Selection
 
@@ -40,7 +39,6 @@ ALWAYS follow the feature guide's corresponding raw text documentation URLs and 
 - **Email Provider** → [email-provider.md](./email-provider.md)
 - **Database** → [database.md](./database.md)
 - **Styling (CSS, UI)** → [styling.md](./styling.md)
-- **Verify Setup** → [verify-setup.md](./verify-setup.md)
 
 ## Guidelines for Using AskUserQuestion with Lists
 
@@ -65,5 +63,4 @@ After completing a feature configuration:
 2. If applicable, let them know if there are any environment variables they need to set and ask them if they need guidance on how to set them
   - if so, fetch the raw github doc file URL for the environment variables and guide the user through the process
 3. Ask if the user would like to configure another feature
-3. If yes, return to Feature Selection
-4. If no, suggest running "Verify Setup" if they haven't already
+3. If yes, return to [Feature Selection](#feature-selection)

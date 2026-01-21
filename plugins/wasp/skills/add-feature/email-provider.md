@@ -4,7 +4,7 @@ Configure an email sending provider for your Wasp app.
 
 ## Prerequisites
 
-- Fetch the list of available email providers from the [Wasp docs](https://wasp.sh/llms.txt)
+- Fetch the list of available email providers from the Wasp docs
 
 ## Steps
 
@@ -15,7 +15,7 @@ Configure an email sending provider for your Wasp app.
    - Remind users they can select "Other" to specify any option from the full list
 
 3. For the selected provider:
-   - Fetch the raw GitHub doc URL for that provider from the [Wasp docs](https://wasp.sh/llms.txt)
+   - Fetch the raw GitHub doc URL for that provider from the Wasp docs
    - Add the provider to the wasp config file's `emailSender` section according to the docs
 
 ## Environment Variables

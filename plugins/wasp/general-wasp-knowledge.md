@@ -17,11 +17,16 @@ Always fetch and verify your knowledge against the current Wasp documentation be
 2. Find and fetch the correct version of the Wasp documentation maps from the [LLMs.txt index](https://wasp.sh/llms.txt). The map contains raw markdown file GitHub URLs of all documentation sections.
 3. Fetch the guides relevant to the current task or query from those raw.githubusercontent.com URLs directly - do NOT use HTML page URLs.
 
-### Schema Changes
+### Database Schema and Migrations
 
-Changes to `schema.prisma` are not applied until `wasp db migrate-dev --name <descriptive-name>` runs. Continue coding freely and tell the user to run migrations when ready to test.
+Always run database migrations with the `--name` flag:
+```bash
+wasp db migrate-dev --name <descriptive-name>
+```
 
-**Track pending migrations:** The dev server warns about this, but users may miss it if Wasp is running as a background task. Remind them of this before testing/viewing the app, and offer to run migrations for them.
+Changes to `schema.prisma` are not applied until database migrations are run. 
+
+**Track pending migrations:** The dev server warns about this, but users may miss it if Wasp is running as a background task. Continue coding freely but inform users of pending migrations before testing/viewing the app and offer to run migrations when the user wants to.
 
 ## Project Reference
 
