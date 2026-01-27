@@ -14,7 +14,7 @@
       "name": "wasp",
       "source": "./plugins/wasp",
       "description": "Enhances Claude to give you an optimal experience developing full-stack web apps with Wasp (React, Node.js, Prisma), by providing curated access to docs, workflows and best practices.\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n⚡️ QUICK START\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🧠 /wasp:init - initial setup (run this first!)\n📖 /wasp:help - view all plugin features",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "author": {
         "name": "Wasp"
       },
