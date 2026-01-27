@@ -1,5 +1,11 @@
 {
   "name": "wasp",
   "version": "1.1.0",
-  "description": "Enhances Claude for developing full-stack web apps with Wasp (React, Node.js, Prisma)"
+  "description": "Enhances Claude for developing full-stack web apps with Wasp (React, Node.js, Prisma)",
+  "mcpServers": {
+    "chrome-devtools": {
+      "command": "npx",
+      "args": ["-y", "chrome-devtools-mcp@latest"]
+    }
+  }
 }
