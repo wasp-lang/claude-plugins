@@ -27,11 +27,11 @@ if (!isInitialized) {
   };
   const result = {
     reason: 'Wasp plugin not initialized',
-    systemMessage: `\n\n${styles.yellow}IMPORTANT!${styles.reset} The Wasp plugin hasn't been initialized for the current project.\n${styles.reset}Run ${styles.yellow}/wasp:init${styles.reset} to get the plugin's full functionality ${styles.dim}-- or reply "opt out" to never see this message again.${styles.reset}`,
+    systemMessage: `\n\n${styles.yellow}IMPORTANT!${styles.reset} The Wasp plugin hasn't been initialized for the current project.\n${styles.reset}Run ${styles.yellow}/wasp-plugin-init${styles.reset} to get the plugin's full functionality ${styles.dim}-- or reply "opt out" to never see this message again.${styles.reset}`,
     suppressOutput: true,
     hookSpecificOutput: {
       hookEventName: 'SessionStart',
-      additionalContext: `The Wasp plugin has not been initialized. The user should run /wasp:init or opt out.
+      additionalContext: `The Wasp plugin has not been initialized. The user should run /wasp-plugin-init or opt out.
           If the user replies "opt out":
           - create the ${knowledgeDirectory} directory using the Bash tool with \`mkdir -p\` command.
           - create the ${optOutFilePath} file using the Bash tool with \`touch\` command.
