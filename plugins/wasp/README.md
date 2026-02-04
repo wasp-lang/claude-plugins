@@ -31,7 +31,7 @@ claude plugin install wasp@wasp-plugins --scope project
 
 After installing, in an active session, run:
 ```bash
-/wasp:init
+/wasp-plugin-init
 ```
 - This will add Wasp knowledge to your project's CLAUDE.md file.
 
@@ -42,13 +42,13 @@ Run the 'start-dev-server' skill.
 
 Finally, to access more information about the plugin and its features, run:
 ```bash
-/wasp:help
+/wasp-plugin-help
 ```
-- This will show the plugin's features, commands, and skills.
+- This will show the plugin's features and skills.
 
-## Commands
+## Skills
 
-Check out the individual [commands](./commands) and [skills](./skills) to learn more about what they are and what they do.
+Check out the individual [skills](./skills) to learn more about what they are and what they do.
 
 ## Recommended Permissions
 
