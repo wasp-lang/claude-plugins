@@ -5,6 +5,16 @@ All notable changes to the Wasp Claude Code plugin will be documented in this fi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-02-04
+
+### Changed
+- Converted commands to skills: `wasp:init` → `/wasp-plugin-init`, `wasp:help` → `/wasp-plugin-help`
+- Renamed `expert-advice` command to skill
+- Renamed `plugin-help` skill to `wasp-plugin-help`
+
+### Removed
+- Removed `commands/` directory (functionality moved to skills)
+
 ## [1.1.1] - 2026-01-27
 
 ### Added

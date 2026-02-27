@@ -1,15 +1,15 @@
 ---
-name: plugin-help
+name: wasp-plugin-help
 description: Shows the Wasp plugin's available features, commands, and skills.
 ---
 
 1. run the [check-wasp-init hook](../../hooks/check-wasp-init.js) using the Bash tool with `node` command to see if Wasp knowledge has been initialized.
 2. let the user know if the Wasp plugin has been initialized or not.
-3. if the Wasp plugin has not been initialized, let the user know they should take care of this first by running `/wasp:init`:
+3. if the Wasp plugin has not been initialized, let the user know they should take care of this first by running `/wasp-plugin-init`:
 ```markdown
 ⚠️
 The Wasp plugin hasn't been initialized for the current project.
-Run `/wasp:init` to get the plugin's full functionality.
+Run `/wasp-plugin-init` to get the plugin's full functionality.
 ```
 4. display the [Wasp Plugin for Claude Code](#wasp-plugin-for-claude-code) section to the user exactly as it is below.
 
@@ -31,15 +31,12 @@ The result: Claude actually understands Wasp instead of guessing.
 
 ## Quick Reference
 
-Slash Commands:
-`/wasp:init` - Initialize plugin for your project
-`/wasp:expert-advice` - Get advice on improvements from a Wasp expert
-`/wasp:help` - Show this guide
-
 Skills:
 `add-feature` - Add Wasp's built-in features (auth, email, database, styling)
 `deploying-app` - Guided deployment to Railway or Fly.io
+`expert-advice` - Get advice on app improvements and functionality from a Wasp expert
 `start-dev-server` - Start dev environment with full debugging visibility (db -> server -> browser console)
+`wasp-plugin-init` - Initialize this plugin for your project -- adds Wasp knowledge and best practices to your project's CLAUDE.md file
 
 ## 💬 Example Prompts
 
