@@ -1,17 +1,17 @@
 ---
 name: start-dev-server
-description: Start the Wasp dev server and set up full debugging visibility. This includes running the server (with access to logs), and connecting browser console access so Claude can see client-side errors. Essential for any development or debugging work.
+description: Start the Wasp dev server and set up full debugging visibility. This includes running the server (with access to logs), and connecting browser console access so the agent can see client-side errors. Essential for any development or debugging work.
 ---
 
 ## Step 0: Get User Preferences
 
-- [ ] Ask the user if they want Claude to start the dev server(s) as a background task in the current session, or on their own in a separate terminal:
-  - Starting as a background task (Claude)
-    - Pros: Claude has more autonomy, can respond directly to dev server logs (warnings, errors).
+- [ ] Ask the user if they want to start the dev server(s) as a background task in the current session, or on their own in a separate terminal:
+  - Starting as a background task
+    - Pros: The agent has more autonomy, can respond directly to dev server logs (warnings, errors).
     - Cons: Certain actions can be slower, and the user has less direct control. Server logs are only visibile to the user from within the `background tasks` tab.
   - Starting externally (User)
     - Pros: The user has more direct control over app development and the Wasp CLI commands. Can be advantageous for more advanced users.
-    - Cons: Debugging and feature discovery can be slower, as Claude doesn't have direct access to dev server logs (warnings, errors) or Wasp CLI commands.
+    - Cons: Debugging and feature discovery can be slower, as the agent doesn't have direct access to dev server logs (warnings, errors) or Wasp CLI commands.
 - [ ] Depending on the user's choice, follow the steps below and run the commands for the user as background tasks, or guide them through running them manually in a separate terminal.
 
 ### Step 1: Ensure the Development Database is Running
@@ -32,7 +32,7 @@ wasp start db
 
 **Docker needs to be installed and running** for the managed Postgres database container (`wasp start db`) to work.
 
-Run this as a background task in the current claude code session.
+Run this as a background task in the current session.
 Wait 5-15 seconds for the database to be ready.
 
 ### Step 2: Start Dev Server
@@ -56,13 +56,28 @@ Confirm client (`localhost:3000`) and server (`localhost:3001`) are running by c
 
 ### Step 4: Connect Browser Console Access (Important!)
 
-**This step is critical for effective development and debugging.** Without browser console access, Claude cannot see client-side errors, warnings, or React issues that occur in the browser.
+**This step is critical for effective development and debugging.** Without browser console access, the agent cannot see client-side errors, warnings, or React issues that occur in the browser.
 
-Ask the user (via the AskUserQuestion tool) which method they'd like to use for giving Claude visibility into the browser console:
+Ask the user (via the AskUserQuestion tool) which method they'd like to use for giving the agent visibility into the browser console:
 
 | Option | Description |
 |--------|-------------|
-| **Chrome DevTools MCP (recommended)** | Use the `mcp__plugin_wasp_chrome-devtools` tool (bundled with the plugin) |
+| **Chrome DevTools MCP (recommended)** | Use the Chrome DevTools MCP tool (must be installed first) |
 | **Built-in Chrome** | Use Claude Code's built-in browser connection (check status with `/chrome` command) |
 | **Manual** | User will manually copy/paste console output when needed |
 | **Other** | User has another preference |
+
+For the Chrome DevTools MCP option, if not already installed, add the following config to their mcp client:
+
+```json
+{
+  "mcpServers": {
+    "chrome-devtools": {
+      "command": "npx",
+      "args": ["-y", "chrome-devtools-mcp@latest"]
+    }
+  }
+}
+```
+
+For agent-specific installation instructions see [Chrome DevTools MCP Readme](https://raw.githubusercontent.com/ChromeDevTools/chrome-devtools-mcp/refs/heads/main/README.md).
