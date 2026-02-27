@@ -7,15 +7,19 @@ description: Adds Wasp knowledge, LLM-friendly documentation fetching instructio
 1. if the user is using Claude Code, follow the [Claude Code memory](#claude-code-memory) instructions. If the user is using other agents, follow the [Other agents memory](#other-agents-memory) instructions.
 
 ## Claude Code memory
-append the Wasp knowledge to the user's CLAUDE.md file as an import:
+- copy [`general-wasp-knowledge.md`](./general-wasp-knowledge.md) to the user's project root `.claude/wasp` directory:
+```bash
+mkdir -p .claude/wasp && cp ./general-wasp-knowledge.md .claude/wasp/general-wasp-knowledge.md
+```
+- append the Wasp knowledge to the user's CLAUDE.md file as an import:
 ```markdown
 # Wasp Knowledge
 
-Wasp knowledge can be found at @.claude/skills/wasp-plugin-init/general-wasp-knowledge.md
+Wasp knowledge can be found at @.claude/wasp/general-wasp-knowledge.md
 ```
-then create the marker file in the project root so the plugin knows init has been run:
+- create the marker file so the plugin knows init has been run:
 ```bash
-mkdir -p .claude/wasp && touch .claude/wasp/.wasp-plugin-initialized
+touch .claude/wasp/.wasp-plugin-initialized
 ```
 
 ## Other agents memory
