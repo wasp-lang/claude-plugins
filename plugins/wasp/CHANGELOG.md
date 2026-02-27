@@ -5,6 +5,13 @@ All notable changes to the Wasp Claude Code plugin will be documented in this fi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1] - 2026-02-26
+
+### Changed
+- Simplified init detection: replaced CLAUDE.md content scanning with a `.claude/wasp/.wasp-plugin-initialized` marker file
+- Moved opt-out marker from `.claude/knowledge/.wasp-init-opt-out` to `.claude/wasp/.wasp-plugin-opt-out` (legacy path still supported)
+- Updated `wasp-plugin-init` skill to create the marker file after initialization (Claude Code path)
+
 ## [1.2.0] - 2026-02-04
 
 ### Changed

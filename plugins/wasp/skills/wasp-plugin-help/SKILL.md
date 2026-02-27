@@ -3,9 +3,9 @@ name: wasp-plugin-help
 description: Shows the Wasp plugin's available features, commands, and skills.
 ---
 
-1. run the [check-wasp-init hook](../../hooks/check-wasp-init.js) using the Bash tool with `node` command to see if Wasp knowledge has been initialized.
+1. run the [check-wasp-init hook](../../hooks/check-wasp-init.js) using the Bash tool with `node` command to check if the Wasp plugin has been initialized.
 2. let the user know if the Wasp plugin has been initialized or not.
-3. if the Wasp plugin has not been initialized, let the user know they should take care of this first by running `/wasp-plugin-init`:
+3. if the Wasp plugin has not been initialized (the hook outputs JSON), let the user know they should take care of this first by running `/wasp-plugin-init`:
 ```markdown
 ⚠️
 The Wasp plugin hasn't been initialized for the current project.
@@ -19,14 +19,14 @@ Run `/wasp-plugin-init` to get the plugin's full functionality.
 
 ## What This Plugin Does
 
-This plugin makes Claude Code work better with Wasp by:
+This plugin makes Claude Code, Codex, Copilot, etc. work better with Wasp by:
 
 1. **Using the right documentation** — Automatically fetches the correct Wasp docs for your project's version
-2. **Avoiding common mistakes** — Provides Wasp-specific tips, patterns, and best practices so Claude doesn't hallucinate or use outdated approaches
-3. **Guided workflows** — Skills and commands so Claude can walk you through setting up Wasp's batteries-included features (auth, email, database, styling) and deploying
-4. **Full debugging visibility** — Start managed databases, dev servers, and connect browser console access so Claude has full development and debugging visibility across the entire stack
+2. **Avoiding common mistakes** — Provides Wasp-specific tips, patterns, and best practices so the agent doesn't hallucinate or use outdated approaches
+3. **Guided workflows** — Skills and commands so the agent can walk you through setting up Wasp's batteries-included features (auth, email, database, styling) and deploying
+4. **Full debugging visibility** — Start managed databases, dev servers, and connect browser console access so the agent has full development and debugging visibility across the entire stack
 
-The result: Claude actually understands Wasp instead of guessing.
+The result: The agent actually understands Wasp instead of guessing.
 
 
 ## Quick Reference
@@ -36,7 +36,7 @@ Skills:
 `deploying-app` - Guided deployment to Railway or Fly.io
 `expert-advice` - Get advice on app improvements and functionality from a Wasp expert
 `start-dev-server` - Start dev environment with full debugging visibility (db -> server -> browser console)
-`wasp-plugin-init` - Initialize this plugin for your project -- adds Wasp knowledge and best practices to your project's CLAUDE.md file
+`wasp-plugin-init` - Adds Wasp knowledge, LLM-friendly documentation fetching instructions, and best practices to your project's CLAUDE.md or AGENTS.md file
 
 ## 💬 Example Prompts
 
