@@ -62,7 +62,7 @@ Ask the user (via the AskUserQuestion tool) which method they'd like to use for 
 
 | Option | Description |
 |--------|-------------|
-| **Chrome DevTools MCP (recommended)** | Use the Chrome DevTools MCP tool (must be installed first) |
+| **Chrome DevTools MCP (recommended)** | Must be installed |
 | **Built-in Chrome** | Use Claude Code's built-in browser connection (check status with `/chrome` command) |
 | **Manual** | User will manually copy/paste console output when needed |
 | **Other** | User has another preference |
@@ -79,5 +79,3 @@ For the Chrome DevTools MCP option, if not already installed, add the following 
   }
 }
 ```
-
-For agent-specific installation instructions see [Chrome DevTools MCP Readme](https://raw.githubusercontent.com/ChromeDevTools/chrome-devtools-mcp/refs/heads/main/README.md).
