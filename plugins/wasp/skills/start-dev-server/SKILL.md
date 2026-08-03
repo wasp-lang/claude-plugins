@@ -14,16 +14,26 @@ description: Start the Wasp dev server and set up full debugging visibility. Thi
     - Cons: Debugging and feature discovery can be slower, as the agent doesn't have direct access to dev server logs (warnings, errors) or Wasp CLI commands.
 - [ ] Depending on the user's choice, follow the steps below and run the commands for the user as background tasks, or guide them through running them manually in a separate terminal.
 
-### Step 1: Ensure the Development Database is Running
+### Step 1: Prepare the Checkout
+
+If `node_modules` is missing, install the project dependencies:
+
+```bash
+wasp install
+```
+
+If `.env.server` or `.env.client` is missing, create it from example file when available. Check the project README for hints.
+
+### Step 2: Ensure the Development Database is Running
 
 Grep the `.env.server` file for `DATABASE_URL`. If no line starts with `DATABASE_URL`, continue following this step.
-If the user does have their own DATABASE_URL env var set, move on to [Step 2](#step-2-start-dev-server).
+If the user does have their own DATABASE_URL env var set, move on to [Step 3](#step-3-run-database-migrations).
 
 Check the `schema.prisma` file in the project root for the `datasource` block to see which database is being used.
 
 #### SQLite
 
-**Skip to [Step 2](#step-2-start-dev-server):** SQLite stores data in a local file, no database server needed.
+**Skip to [Step 3](#step-3-run-database-migrations):** SQLite stores data in a local file, no database server needed.
 
 #### PostgreSQL
 
@@ -38,13 +48,7 @@ wasp start db
 Run this as a background task in the current session.
 Wait 5-15 seconds for the database to be ready.
 
-### Step 2: Start Dev Server
-
-Start the Wasp development server as a background task:
-
-```bash
-wasp start
-```
+### Step 3: Run Database Migrations
 
 If this is the first time starting the app, or if there are pending migrations, run the following command:
 
@@ -52,14 +56,24 @@ If this is the first time starting the app, or if there are pending migrations, 
 wasp db migrate-dev --name <migration-name>
 ```
 
-### Step 3: Verify Server is Running
+Check the project README to see whether you also need to run a database seed.
+
+### Step 4: Start Dev Server
+
+Start the Wasp development server as a background task:
+
+```bash
+wasp start
+```
+
+### Step 5: Verify Server is Running
 
 Confirm client (`localhost:3000`) and server (`localhost:3001`) are running by checking the background task output.
 
 **If started as background task in current session:** Listen to the output for development and debugging information.
 **If started externally:** Instruct the user to check the output of the external terminal and share its output with you.
 
-### Step 4: Connect Browser Console Access (Important!)
+### Step 6: Connect Browser Console Access (Important!)
 
 **This step is critical for effective development and debugging.** Without browser console access, the agent cannot see client-side errors, warnings, or React issues that occur in the browser.
 
