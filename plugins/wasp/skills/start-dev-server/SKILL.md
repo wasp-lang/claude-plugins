@@ -22,7 +22,7 @@ If `node_modules` is missing, install the project dependencies:
 wasp install
 ```
 
-If `.env.server` or `.env.client` is missing, create it from example file when available. Check the project README for hints.
+If `.env.server` or `.env.client` are missing and `.env.server.example` or `.env.client.example` are available, create the missing file from the example file. Ask the user to edit the file to set the correct values.
 
 ### Step 2: Ensure the Development Database is Running
 
@@ -56,7 +56,11 @@ If this is the first time starting the app, or if there are pending migrations, 
 wasp db migrate-dev --name <migration-name>
 ```
 
-Check the project README to see whether you also need to run a database seed.
+Some apps require seed data to work properly. Run the following command to seed the database:
+
+```bash
+wasp db seed <name>
+```
 
 ### Step 4: Start Dev Server
 
