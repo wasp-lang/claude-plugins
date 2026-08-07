@@ -1,6 +1,6 @@
 {
   "name": "wasp",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Enhances Claude for developing full-stack web apps with Wasp (React, Node.js, Prisma)",
   "mcpServers": {
     "chrome-devtools": {

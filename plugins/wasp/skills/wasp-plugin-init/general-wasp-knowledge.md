@@ -29,6 +29,35 @@ Changes to `schema.prisma` are not applied until database migrations are run.
 
 **Track pending migrations:** The dev server warns about this, but users may miss it if Wasp is running as a background task. Continue coding freely but inform users of pending migrations before testing/viewing the app and offer to run migrations when the user wants to.
 
+#### Migrations in non-interactive (agent) shells
+
+`wasp db migrate-dev` runs Prisma's `migrate dev`, which **aborts in non-interactive environments** (no TTY) whenever it would normally prompt — e.g. adding a unique constraint that may cause data loss. There is no `--yes` flag.
+
+```
+Error: Prisma Migrate has detected that the environment is non-interactive, which is not supported.
+```
+
+Do **not** work around this by running raw `npx prisma` commands against `.wasp/out`. Wasp wraps Prisma with DB/auth setup, and the Wasp CLI docs warn that calling Prisma directly can desync that setup. If you hit the non-interactive abort in an agent/background shell, ask the user to run `wasp db migrate-dev --name <descriptive-name>` in their own terminal — it needs a TTY to prompt safely.
+
+### Seeding the Database
+
+Use `db.seeds` for database-wide initial data. Agent-specific notes:
+
+- Wasp does **not** track seeds as "already run"; `wasp db seed` executes them every time, so make seed functions idempotent.
+- Do not use seeds for per-user defaults. For data every user needs, run an idempotent Action from the client on load.
+- When seeding auth users, use `sanitizeAndSerializeProviderData` from `wasp/server/auth`; do not hand-roll `providerData`:
+
+```ts
+import { sanitizeAndSerializeProviderData } from "wasp/server/auth";
+
+const providerData = await sanitizeAndSerializeProviderData<"email">({
+  hashedPassword: "TestPass123!",
+  isEmailVerified: true,
+  emailVerificationSentAt: null,
+  passwordResetSentAt: null,
+});
+```
+
 ## Project Reference
 
 ### Config File Format
@@ -136,7 +165,21 @@ See the config docs for your version (linked from [Config File Format](#config-f
 
 #### Operations
 
-- ⚠️ Call actions directly using `async/await`. DO NOT use Wasp's `useAction` hook unless optimistic updates are needed.
+Agent-specific rules:
+
+- **Declare every Entity an operation touches** in its `entities:` array. This powers both `context.entities` and Wasp's automatic Query cache invalidation.
+- **Missing generated types** (`Cannot find name 'GetFoo'`) are expected until the operation is declared in the config and Wasp recompiles. Let `wasp start` regenerate them, or run `wasp compile`; do not use `wasp build` for this.
+- **Call Actions with `async/await` by default.** Use `useAction` only for optimistic updates.
+- **Do not add manual `invalidateQueries`** when matching `entities` already cover the Action/Query pair.
+- **If manual invalidation is necessary**, import `useQueryClient` from `@tanstack/react-query` (Wasp does not re-export it) and use the Wasp query's `queryCacheKey`:
+
+```ts
+import { useQueryClient } from "@tanstack/react-query";
+import { getTasks } from "wasp/client/operations";
+
+const queryClient = useQueryClient();
+queryClient.invalidateQueries({ queryKey: getTasks.queryCacheKey });
+```
 
 ## Troubleshooting
 
@@ -159,3 +202,4 @@ If you don't have full debugging visibility as described in the [Start a Wasp De
 | Types stale/IDE errors after changes                         | Restart TS server `Cmd+Shift+P`                                                                           |
 | Wasp not recognizing changes                                 | **WAIT PATIENTLY** as Wasp recompiles the project. Re-run `wasp start` if necessary.                      |
 | Persistent weirdness after waiting patiently and restarting. | Run `wasp clean` && `wasp start`                                                                          |
+| `Prisma Migrate … non-interactive environment`               | Needs a TTY. Do not run raw `npx prisma`; ask the user to run `wasp db migrate-dev --name …` in their terminal. |

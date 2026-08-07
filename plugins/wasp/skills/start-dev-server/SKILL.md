@@ -72,7 +72,7 @@ wasp start
 
 ### Step 5: Verify Server is Running
 
-Confirm client (`localhost:3000`) and server (`localhost:3001`) are running by checking the background task output.
+Confirm the client and server are running by checking the background task output. The client runs at `localhost:3000` and the server at `localhost:3001` by default. If the project overrides these, the client URL is the value of `WASP_WEB_CLIENT_URL` in `.env.server` (fall back to `localhost:3000` if unset) and the server port is `PORT` in `.env.server` (fall back to `3001`).
 
 **If started as background task in current session:** Listen to the output for development and debugging information.
 **If started externally:** Instruct the user to check the output of the external terminal and share its output with you.
